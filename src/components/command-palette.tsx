@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 import Fuse from "fuse.js";
 import { getAllPractices, getAllCategories } from "@/lib/data";
 import { Search, ArrowRight, FileText, Folder } from "lucide-react";
@@ -69,6 +70,8 @@ const fuse = new Fuse(searchItems, {
   includeScore: true,
 });
 
+const ease = [0.25, 0.1, 0.25, 1] as const;
+
 export function CommandPaletteProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
 
@@ -89,7 +92,9 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
   return (
     <CommandPaletteContext.Provider value={{ open, setOpen }}>
       {children}
-      {open && <CommandPalette onClose={() => setOpen(false)} />}
+      <AnimatePresence>
+        {open && <CommandPalette onClose={() => setOpen(false)} />}
+      </AnimatePresence>
     </CommandPaletteContext.Provider>
   );
 }
@@ -100,6 +105,29 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  // Focus trap (UX-003)
+  useEffect(() => {
+    function trapFocus(e: KeyboardEvent) {
+      if (e.key !== "Tab" || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'input, button, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    document.addEventListener("keydown", trapFocus);
+    return () => document.removeEventListener("keydown", trapFocus);
+  }, []);
 
   const results =
     query.length > 0
@@ -141,11 +169,28 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh]">
-      <div
+      <motion.div
         className="absolute inset-0 bg-black/60 backdrop-blur-command"
         onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.15 }}
       />
-      <div className="relative w-full max-w-lg rounded-xl border border-border bg-card shadow-2xl">
+      <motion.div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Search practices"
+        className="relative w-full max-w-lg overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
+        initial={{ opacity: 0, scale: 0.96, y: 8 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 4 }}
+        transition={{ duration: 0.2, ease }}
+      >
+        {/* Top accent line */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+
         {/* Search input */}
         <div className="flex items-center gap-3 border-b border-border px-4 py-3">
           <Search className="h-5 w-5 text-muted-foreground" />
@@ -205,7 +250,7 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
             </button>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

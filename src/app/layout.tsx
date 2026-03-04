@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { Sidebar } from "@/components/sidebar";
 import { MobileNav } from "@/components/mobile-nav";
 import { CommandPaletteProvider } from "@/components/command-palette";
+import { PageTransition } from "@/components/page-transition";
 import "./globals.css";
 
 const inter = Inter({
@@ -36,8 +37,8 @@ export default function RootLayout({
             <Sidebar />
             <MobileNav />
             <main className="flex-1 lg:pl-[280px]">
-              <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-                {children}
+              <div className="mx-auto max-w-5xl px-6 py-12 sm:px-8 lg:px-12">
+                <PageTransition>{children}</PageTransition>
               </div>
             </main>
           </div>
