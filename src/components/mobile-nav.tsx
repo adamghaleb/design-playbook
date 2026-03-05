@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, Menu, X, Search } from "lucide-react";
 import { useCommandPalette } from "./command-palette";
 import { NavLinks } from "./nav-links";
+import { ThemeToggle } from "./theme-toggle";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
@@ -20,22 +21,23 @@ export function MobileNav() {
       {/* Mobile header */}
       <header className="fixed top-0 left-0 right-0 z-40 flex h-14 items-center justify-between border-b border-border-subtle bg-card/80 backdrop-blur-sm px-4 lg:hidden">
         <div className="flex items-center gap-2">
-          <BookOpen className="h-5 w-5 text-indigo-400" />
-          <Link href="/" className="text-sm font-semibold">
+          <BookOpen className="h-5 w-5 text-primary" />
+          <Link href="/" className="font-serif text-sm font-medium">
             Design Playbook
           </Link>
         </div>
         <div className="flex items-center gap-1">
+          <ThemeToggle />
           <button
             onClick={() => setCommandOpen(true)}
-            className="rounded-md p-2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50"
+            className="rounded-md p-2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             aria-label="Search"
           >
             <Search className="h-5 w-5" />
           </button>
           <button
             onClick={() => setOpen(!open)}
-            className="rounded-md p-2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50"
+            className="rounded-md p-2 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
           >

@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import type { Practice } from "@/lib/types";
+import { CATEGORY_COLORS_LIGHT } from "@/lib/types";
 import { ScoreDots } from "./score-dots";
 import { Badge } from "./badge";
-import { getCategoryColor } from "@/lib/data";
 import { motion } from "framer-motion";
 
 interface PracticeCardProps {
@@ -18,13 +18,13 @@ export function PracticeCard({
   practice,
   showCategory = false,
 }: PracticeCardProps) {
-  const color = getCategoryColor(practice.category);
+  const color = CATEGORY_COLORS_LIGHT[practice.category] || "#8185B5";
 
   return (
     <motion.div whileHover={{ y: -1 }} transition={{ duration: 0.15, ease }}>
       <Link
         href={`/practice/${practice.id}`}
-        className="group relative block overflow-hidden rounded-xl border border-border-subtle bg-surface-1 p-7 pl-9 transition-all duration-200 hover:border-border-hover card-elevated hover:card-elevated-hover"
+        className="group relative block overflow-hidden rounded-md border border-border-subtle bg-surface-1 p-8 pl-10 transition-all duration-200 hover:border-border-hover card-elevated"
       >
         {/* Left color strip */}
         <div
@@ -33,16 +33,16 @@ export function PracticeCard({
         />
 
         <div className="mb-3 flex items-center justify-between">
-          <span className="font-mono text-[11px] text-muted-foreground">
+          <span className="font-mono text-xs text-muted-foreground">
             {practice.id}
           </span>
           <ScoreDots score={practice.practicalityScore} size="sm" />
         </div>
-        <h3 className="mb-3 text-sm font-semibold leading-snug text-foreground group-hover:text-white">
+        <h3 className="mb-3 font-serif text-lg font-medium leading-snug text-foreground group-hover:text-foreground">
           {practice.title}
         </h3>
         {practice.context && (
-          <p className="mb-4 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+          <p className="mb-4 text-sm leading-relaxed text-muted-foreground line-clamp-2">
             {practice.context}
           </p>
         )}

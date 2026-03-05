@@ -8,6 +8,8 @@ import {
   SECTION_ORDER,
   CATEGORY_SECTIONS,
   CATEGORY_COLORS,
+  CATEGORY_COLORS_LIGHT,
+  CATEGORY_COLORS_DARK,
 } from "./types";
 
 const practices: Practice[] = practicesJson as Practice[];
@@ -91,6 +93,14 @@ export function getStats() {
 
 export function getCategoryColor(categoryName: string): string {
   return CATEGORY_COLORS[categoryName] || "#6366f1";
+}
+
+export function getCategoryColorLight(categoryName: string): string {
+  return CATEGORY_COLORS_LIGHT[categoryName] || "#8185B5";
+}
+
+export function getCategoryColorDark(categoryName: string): string {
+  return CATEGORY_COLORS_DARK[categoryName] || "#9195C5";
 }
 
 export function getCategorySection(categoryName: string): string {

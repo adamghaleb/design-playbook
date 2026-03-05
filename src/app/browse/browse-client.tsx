@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Fuse from "fuse.js";
 import type { Practice, Category } from "@/lib/types";
 import { PracticeCard } from "@/components/practice-card";
+import { MasonryGrid } from "@/components/masonry-grid";
 import { EmptyState } from "@/components/empty-state";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { Search, X, SlidersHorizontal } from "lucide-react";
@@ -26,11 +27,6 @@ const fuse = new Fuse<Practice>([], {
 });
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
-
-const cardVariants = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.3, ease } },
-};
 
 export function BrowseClient({
   practices,
@@ -112,11 +108,11 @@ export function BrowseClient({
 
   return (
     <div>
-      <div className="mb-12">
-        <h1 className="mb-3 text-2xl font-bold tracking-tight">
+      <div className="mb-16">
+        <h1 className="mb-3 font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
           Browse All Practices
         </h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           {filtered.length} of {practices.length} practices
         </p>
       </div>
@@ -130,7 +126,7 @@ export function BrowseClient({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search practices..."
-            className="w-full rounded-lg border border-border-subtle bg-surface-1 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-indigo-500/50 focus-visible:border-border-hover"
+            className="w-full rounded-md border border-border-subtle bg-surface-1 py-2.5 pl-10 pr-4 text-sm outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-border-hover"
           />
           {query && (
             <button
@@ -143,16 +139,16 @@ export function BrowseClient({
         </div>
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className={`flex items-center gap-2 rounded-lg border px-4 py-2.5 text-sm transition-colors ${
+          className={`flex items-center gap-2 rounded-md border px-4 py-2.5 text-sm transition-colors ${
             showFilters || hasActiveFilters
-              ? "border-indigo-500/50 bg-indigo-500/10 text-indigo-400"
+              ? "border-primary/50 bg-primary-glow text-primary"
               : "border-border-subtle bg-surface-1 text-muted-foreground hover:text-foreground"
           }`}
         >
           <SlidersHorizontal className="h-4 w-4" />
           Filters
           {hasActiveFilters && (
-            <span className="rounded-full bg-indigo-500 px-1.5 py-0.5 text-[10px] text-white">
+            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[10px] text-background">
               {(selectedCategory ? 1 : 0) +
                 selectedTags.length +
                 (minScore > 0 ? 1 : 0)}
@@ -171,13 +167,13 @@ export function BrowseClient({
             transition={{ duration: 0.25, ease }}
             className="overflow-hidden"
           >
-            <div className="mb-8 rounded-xl border border-border-subtle bg-surface-1 p-6">
+            <div className="mb-8 rounded-md border border-border-subtle bg-surface-1 p-8">
               <div className="mb-4 flex items-center justify-between">
-                <h3 className="text-sm font-medium">Filters</h3>
+                <h3 className="font-serif text-sm font-medium">Filters</h3>
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
-                    className="text-xs text-indigo-400 hover:text-indigo-300"
+                    className="text-xs text-primary hover:text-primary-dim"
                   >
                     Clear all
                   </button>
@@ -192,7 +188,7 @@ export function BrowseClient({
                 <select
                   value={selectedCategory || ""}
                   onChange={(e) => setSelectedCategory(e.target.value || null)}
-                  className="w-full rounded-lg border border-border-subtle bg-background px-3 py-2 text-sm outline-none"
+                  className="w-full rounded-md border border-border-subtle bg-background px-3 py-2 text-sm outline-none"
                 >
                   <option value="">All categories</option>
                   {categories.map((c) => (
@@ -213,9 +209,9 @@ export function BrowseClient({
                     <button
                       key={score}
                       onClick={() => setMinScore(score)}
-                      className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
+                      className={`rounded-md border px-3 py-1.5 text-sm transition-colors ${
                         minScore === score
-                          ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
+                          ? "border-primary/50 bg-primary-glow text-primary"
                           : "border-border text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -242,7 +238,7 @@ export function BrowseClient({
                       onClick={() => toggleTag(tag)}
                       className={`rounded-full border px-2.5 py-1 text-[11px] transition-colors ${
                         selectedTags.includes(tag)
-                          ? "border-indigo-500/50 bg-indigo-500/10 text-indigo-400"
+                          ? "border-primary/50 bg-primary-glow text-primary"
                           : "border-border text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -261,34 +257,22 @@ export function BrowseClient({
         <EmptyState />
       ) : (
         <>
-          <motion.div
-            className="grid gap-5 sm:grid-cols-2"
+          <MasonryGrid
             key={`${page}-${debouncedQuery}-${selectedCategory}`}
-            initial="initial"
-            animate="animate"
-            variants={{
-              animate: {
-                transition: {
-                  staggerChildren: 0.03,
-                  delayChildren: 0.02,
-                },
-              },
-            }}
+            columns={{ sm: 2 }}
           >
             {paginated.map((p) => (
-              <motion.div key={p.id} variants={cardVariants}>
-                <PracticeCard practice={p} showCategory />
-              </motion.div>
+              <PracticeCard key={p.id} practice={p} showCategory />
             ))}
-          </motion.div>
+          </MasonryGrid>
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="mt-10 flex items-center justify-center gap-3">
+            <div className="mt-14 flex items-center justify-center gap-3">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}
-                className="rounded-lg border border-border px-3 py-1.5 text-sm transition-colors hover:bg-accent disabled:opacity-40 disabled:cursor-not-allowed"
+                className="rounded-md border border-border px-3 py-1.5 text-sm transition-colors hover:bg-accent disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Previous
               </button>
@@ -298,7 +282,7 @@ export function BrowseClient({
               <button
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
-                className="rounded-lg border border-border px-3 py-1.5 text-sm transition-colors hover:bg-accent disabled:opacity-40 disabled:cursor-not-allowed"
+                className="rounded-md border border-border px-3 py-1.5 text-sm transition-colors hover:bg-accent disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Next
               </button>

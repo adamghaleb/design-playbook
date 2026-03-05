@@ -8,19 +8,25 @@ interface ScoreDotsProps {
 }
 
 const dotColors: Record<number, { bg: string; glow: string }> = {
-  1: { bg: "bg-red-400", glow: "shadow-[0_0_6px_rgba(248,113,113,0.4)]" },
+  1: {
+    bg: "bg-[#C49080]",
+    glow: "shadow-[0_0_6px_rgba(196,144,128,0.3)]",
+  },
   2: {
-    bg: "bg-orange-400",
-    glow: "shadow-[0_0_6px_rgba(251,146,60,0.4)]",
+    bg: "bg-[#C4A078]",
+    glow: "shadow-[0_0_6px_rgba(196,160,120,0.3)]",
   },
   3: {
-    bg: "bg-yellow-400",
-    glow: "shadow-[0_0_6px_rgba(250,204,21,0.4)]",
+    bg: "bg-[#B8A882]",
+    glow: "shadow-[0_0_6px_rgba(184,168,130,0.3)]",
   },
-  4: { bg: "bg-green-400", glow: "shadow-[0_0_6px_rgba(74,222,128,0.4)]" },
+  4: {
+    bg: "bg-[#8AAB90]",
+    glow: "shadow-[0_0_6px_rgba(138,171,144,0.3)]",
+  },
   5: {
-    bg: "bg-emerald-400",
-    glow: "shadow-[0_0_6px_rgba(52,211,153,0.4)]",
+    bg: "bg-[#7AA898]",
+    glow: "shadow-[0_0_6px_rgba(122,168,152,0.3)]",
   },
 };
 
@@ -44,7 +50,7 @@ export function ScoreDots({ score, size = "md" }: ScoreDotsProps) {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.2, delay: i * 0.04, ease }}
             className={`rounded-full ${dotSize} ${
-              filled ? `${color!.bg} ${color!.glow}` : "bg-zinc-700"
+              filled ? `${color!.bg} ${color!.glow}` : "bg-surface-3"
             }`}
           />
         );

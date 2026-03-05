@@ -182,7 +182,7 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
         role="dialog"
         aria-modal="true"
         aria-label="Search practices"
-        className="relative w-full max-w-lg overflow-hidden rounded-xl border border-border bg-card shadow-2xl"
+        className="relative w-full max-w-lg overflow-hidden rounded-md border border-border bg-card shadow-2xl"
         initial={{ opacity: 0, scale: 0.96, y: 8 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.96, y: 4 }}
@@ -224,14 +224,14 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
               role="option"
               aria-selected={i === selectedIndex}
               onClick={() => navigate(item)}
-              className={`flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
+              className={`flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm transition-colors ${
                 i === selectedIndex
                   ? "bg-accent text-accent-foreground"
                   : "text-muted-foreground hover:bg-accent/50"
               }`}
             >
               {item.type === "category" ? (
-                <Folder className="h-4 w-4 shrink-0 text-indigo-400" />
+                <Folder className="h-4 w-4 shrink-0 text-primary" />
               ) : (
                 <FileText className="h-4 w-4 shrink-0" />
               )}

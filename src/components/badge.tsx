@@ -7,7 +7,7 @@ interface BadgeProps {
 export function Badge({ children, color, variant = "default" }: BadgeProps) {
   if (variant === "outline") {
     return (
-      <span className="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+      <span className="inline-flex items-center rounded-full border border-border px-2 py-0.5 text-xs font-medium text-muted-foreground">
         {children}
       </span>
     );
@@ -15,7 +15,7 @@ export function Badge({ children, color, variant = "default" }: BadgeProps) {
 
   return (
     <span
-      className="inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium"
+      className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
       style={
         color
           ? {

@@ -5,7 +5,7 @@ import {
   getPracticeById,
   getAdjacentPractices,
   getCategoryBySlug,
-  getCategoryColor,
+  getCategoryColorLight,
 } from "@/lib/data";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/badge";
@@ -83,7 +83,7 @@ export default async function PracticePage({
   if (!practice) notFound();
 
   const category = getCategoryBySlug(practice.categorySlug);
-  const color = getCategoryColor(practice.category);
+  const color = getCategoryColorLight(practice.category);
   const { prev, next } = getAdjacentPractices(id, practice.categorySlug);
   const sources = parseSources(practice.sources);
 
@@ -116,7 +116,7 @@ export default async function PracticePage({
               <Badge variant="outline">{practice.subcategory}</Badge>
             )}
           </div>
-          <h1 className="mb-5 text-2xl font-bold tracking-tight">
+          <h1 className="mb-5 font-serif text-2xl font-semibold tracking-tight sm:text-3xl">
             {practice.title}
           </h1>
           <div className="flex items-center gap-4">
@@ -130,7 +130,7 @@ export default async function PracticePage({
         </PracticeHeader>
 
         {/* Context */}
-        <div className="noise relative mb-12 overflow-hidden rounded-xl border border-border-subtle bg-surface-1 p-7 pl-10 card-elevated">
+        <div className="noise relative mb-16 overflow-hidden rounded-md border border-border-subtle bg-surface-1 p-8 pl-12 card-elevated">
           {/* Left color accent strip */}
           <div
             className="absolute left-0 top-4 bottom-4 w-[3px] rounded-full"
@@ -140,15 +140,15 @@ export default async function PracticePage({
             <BookOpen className="h-4 w-4" />
             Context
           </div>
-          <p className="relative z-10 text-sm leading-relaxed text-muted-foreground">
+          <p className="relative z-10 text-base leading-relaxed text-muted-foreground">
             {practice.context}
           </p>
         </div>
 
         {/* Tags */}
         {practice.tags.length > 0 && (
-          <div className="mb-12">
-            <h2 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="mb-16">
+            <h2 className="mb-4 font-sans text-xs font-medium uppercase tracking-wider text-muted-foreground">
               Tags
             </h2>
             <div className="flex flex-wrap gap-2.5">
@@ -163,22 +163,22 @@ export default async function PracticePage({
 
         {/* Sources */}
         {sources.length > 0 && (
-          <div className="mb-12">
-            <h2 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="mb-16">
+            <h2 className="mb-4 font-sans text-xs font-medium uppercase tracking-wider text-muted-foreground">
               Sources
             </h2>
             <div className="space-y-3">
               {sources.map((source, i) => (
                 <div
                   key={i}
-                  className="rounded-lg border border-border-subtle bg-surface-1 px-5 py-4 text-sm text-muted-foreground"
+                  className="rounded-md border border-border-subtle bg-surface-1 px-5 py-4 text-sm text-muted-foreground"
                 >
                   {source.url ? (
                     <a
                       href={source.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-indigo-400 hover:text-indigo-300 transition-colors"
+                      className="inline-flex items-center gap-1 text-primary hover:text-primary-dim transition-colors"
                     >
                       {source.text}
                       <ExternalLink className="h-3 w-3" />
@@ -197,7 +197,7 @@ export default async function PracticePage({
           {prev ? (
             <Link
               href={`/practice/${prev.id}`}
-              className="group flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+              className="group flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
               <div>
@@ -213,7 +213,7 @@ export default async function PracticePage({
           {next ? (
             <Link
               href={`/practice/${next.id}`}
-              className="group flex items-center gap-2 rounded-lg px-3 py-2 text-right text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+              className="group flex items-center gap-2 rounded-md px-3 py-2 text-right text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
             >
               <div>
                 <div className="text-[10px] uppercase tracking-wider">Next</div>
