@@ -59,6 +59,16 @@ const playbooks: PlaybookConfig[] = [
     icon: "Plug",
     hasResearch: false,
   },
+  {
+    slug: "micrographics",
+    name: "Micrographics Playbook",
+    shortName: "Micrographics",
+    description:
+      "483 techniques for micrography, calligrams, shaped text, and typographic illustration art.",
+    accentColor: "#14b8a6",
+    icon: "Type",
+    hasResearch: false,
+  },
 ];
 
 const playbookBySlug = new Map<string, PlaybookConfig>();

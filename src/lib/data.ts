@@ -32,6 +32,11 @@ import pluginsCategories from "../../data/plugins/categories.json";
 import pluginsTags from "../../data/plugins/tags.json";
 import pluginsMeta from "../../data/plugins/meta.json";
 
+import micrographicsPractices from "../../data/micrographics/practices.json";
+import micrographicsCategories from "../../data/micrographics/categories.json";
+import micrographicsTags from "../../data/micrographics/tags.json";
+import micrographicsMeta from "../../data/micrographics/meta.json";
+
 // Registry of all playbook data (add new playbooks here)
 const PLAYBOOK_DATA: Record<
   string,
@@ -77,6 +82,13 @@ const PLAYBOOK_DATA: Record<
     tags: pluginsTags as string[],
     articles: [],
     meta: pluginsMeta as PlaybookMeta,
+  },
+  micrographics: {
+    practices: micrographicsPractices as Practice[],
+    categories: micrographicsCategories as Category[],
+    tags: micrographicsTags as string[],
+    articles: [],
+    meta: micrographicsMeta as PlaybookMeta,
   },
 };
 

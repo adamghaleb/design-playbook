@@ -1,0 +1,156 @@
+[
+  {
+    "name": "Historical Micrography & Calligrams",
+    "slug": "historical-micrography-calligrams",
+    "count": 20,
+    "section": "Foundations",
+    "color": "#e06050"
+  },
+  {
+    "name": "Typography Fundamentals for Text Art",
+    "slug": "typography-fundamentals-for-text-art",
+    "count": 25,
+    "section": "Foundations",
+    "color": "#d47040"
+  },
+  {
+    "name": "Perception & Readability Science",
+    "slug": "perception-readability-science",
+    "count": 22,
+    "section": "Foundations",
+    "color": "#c88030"
+  },
+  {
+    "name": "Vector Field & Streamline Generation",
+    "slug": "vector-field-streamline-generation",
+    "count": 25,
+    "section": "Rendering Techniques",
+    "color": "#b89030"
+  },
+  {
+    "name": "Text Placement & Layout Algorithms",
+    "slug": "text-placement-layout-algorithms",
+    "count": 25,
+    "section": "Layout & Composition",
+    "color": "#a89840"
+  },
+  {
+    "name": "Tone & Density Mapping",
+    "slug": "tone-density-mapping",
+    "count": 20,
+    "section": "Rendering Techniques",
+    "color": "#88a040"
+  },
+  {
+    "name": "Halftone & Dithering Techniques",
+    "slug": "halftone-dithering-techniques",
+    "count": 20,
+    "section": "Rendering Techniques",
+    "color": "#60a850"
+  },
+  {
+    "name": "GPU & Shader-Based Rendering",
+    "slug": "gpu-shader-based-rendering",
+    "count": 20,
+    "section": "Rendering Techniques",
+    "color": "#40a870"
+  },
+  {
+    "name": "Portrait & Photo-to-Text Conversion",
+    "slug": "portrait-photo-to-text-conversion",
+    "count": 25,
+    "section": "Layout & Composition",
+    "color": "#30a890"
+  },
+  {
+    "name": "ASCII & Character Art Systems",
+    "slug": "ascii-character-art-systems",
+    "count": 20,
+    "section": "Layout & Composition",
+    "color": "#30a0a8"
+  },
+  {
+    "name": "Mosaic & Tile-Based Composition",
+    "slug": "mosaic-tile-based-composition",
+    "count": 20,
+    "section": "Layout & Composition",
+    "color": "#3090b0"
+  },
+  {
+    "name": "Generative & Parametric Typography",
+    "slug": "generative-parametric-typography",
+    "count": 20,
+    "section": "Generative & AI",
+    "color": "#3080c0"
+  },
+  {
+    "name": "AI & Neural Text-Image Synthesis",
+    "slug": "ai-neural-text-image-synthesis",
+    "count": 25,
+    "section": "Generative & AI",
+    "color": "#4070c8"
+  },
+  {
+    "name": "Editor UX & Interaction Patterns",
+    "slug": "editor-ux-interaction-patterns",
+    "count": 30,
+    "section": "Tools & Production",
+    "color": "#5060d0"
+  },
+  {
+    "name": "Preview & Real-Time Feedback Systems",
+    "slug": "preview-real-time-feedback-systems",
+    "count": 20,
+    "section": "Tools & Production",
+    "color": "#6850c8"
+  },
+  {
+    "name": "Customization & Parameter Controls",
+    "slug": "customization-parameter-controls",
+    "count": 21,
+    "section": "Tools & Production",
+    "color": "#8040c0"
+  },
+  {
+    "name": "Export, Format & Production Pipeline",
+    "slug": "export-format-production-pipeline",
+    "count": 25,
+    "section": "Tools & Production",
+    "color": "#9838b0"
+  },
+  {
+    "name": "Batch Processing & Automation",
+    "slug": "batch-processing-automation",
+    "count": 15,
+    "section": "Tools & Production",
+    "color": "#b030a0"
+  },
+  {
+    "name": "Existing Tools & Competitive Analysis",
+    "slug": "existing-tools-competitive-analysis",
+    "count": 25,
+    "section": "Strategy & Applications",
+    "color": "#c03088"
+  },
+  {
+    "name": "Market Positioning & Monetization",
+    "slug": "market-positioning-monetization",
+    "count": 20,
+    "section": "Strategy & Applications",
+    "color": "#d03070"
+  },
+  {
+    "name": "Use Cases & Application Domains",
+    "slug": "use-cases-application-domains",
+    "count": 20,
+    "section": "Strategy & Applications",
+    "color": "#d84060"
+  },
+  {
+    "name": "Plugin Architecture & Integration",
+    "slug": "plugin-architecture-integration",
+    "count": 20,
+    "section": "Strategy & Applications",
+    "color": "#e05050"
+  }
+]
