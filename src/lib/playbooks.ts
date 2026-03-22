@@ -11,8 +11,8 @@ export interface PlaybookConfig {
 const playbooks: PlaybookConfig[] = [
   {
     slug: "design",
-    name: "Design Playbook",
-    shortName: "Design",
+    name: "UX Design Playbook",
+    shortName: "UX Design",
     description:
       "UX & product design best practices backed by research. From cognitive psychology to component patterns.",
     accentColor: "#7c6f5e",
