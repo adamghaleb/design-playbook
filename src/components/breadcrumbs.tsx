@@ -8,13 +8,14 @@ interface Crumb {
 
 interface BreadcrumbsProps {
   items: Crumb[];
+  basePath?: string;
 }
 
-export function Breadcrumbs({ items }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, basePath = "/" }: BreadcrumbsProps) {
   return (
     <nav className="mb-6 flex items-center gap-1 text-sm text-muted-foreground">
       <Link
-        href="/"
+        href={basePath}
         className="hover:text-foreground hover:underline transition-colors"
       >
         Home

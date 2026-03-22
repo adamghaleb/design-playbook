@@ -1,0 +1,184 @@
+[
+  {
+    "name": "Cognitive Reappraisal & Reframing",
+    "slug": "cognitive-reappraisal-and-reframing",
+    "count": 25,
+    "section": "Cognitive Strategies",
+    "color": "#C4906A"
+  },
+  {
+    "name": "Attention Redirection & Inhibition",
+    "slug": "attention-redirection-and-inhibition",
+    "count": 20,
+    "section": "Cognitive Strategies",
+    "color": "#BF7A7A"
+  },
+  {
+    "name": "Strategy Selection & Deployment",
+    "slug": "strategy-selection-and-deployment",
+    "count": 20,
+    "section": "Cognitive Strategies",
+    "color": "#B87A9E"
+  },
+  {
+    "name": "Emotional Regulation",
+    "slug": "emotional-regulation",
+    "count": 25,
+    "section": "Awareness & Regulation",
+    "color": "#A882B8"
+  },
+  {
+    "name": "Implementation Intentions & Habit Design",
+    "slug": "implementation-intentions-and-habit-design",
+    "count": 20,
+    "section": "Models & Systems",
+    "color": "#9A85B5"
+  },
+  {
+    "name": "Discriminative Awareness & Signal Detection",
+    "slug": "discriminative-awareness-and-signal-detection",
+    "count": 20,
+    "section": "Monitoring & Evaluation",
+    "color": "#8E84B8"
+  },
+  {
+    "name": "Perspective-Taking & Decentering",
+    "slug": "perspective-taking-and-decentering",
+    "count": 20,
+    "section": "Monitoring & Evaluation",
+    "color": "#8185B5"
+  },
+  {
+    "name": "Decision Hygiene & Calibration",
+    "slug": "decision-hygiene-and-calibration",
+    "count": 25,
+    "section": "Monitoring & Evaluation",
+    "color": "#7A94B8"
+  },
+  {
+    "name": "Mental Model Surfacing & Revision",
+    "slug": "mental-model-surfacing-and-revision",
+    "count": 25,
+    "section": "Models & Systems",
+    "color": "#6FA0B5"
+  },
+  {
+    "name": "Systems Perception & Pattern Recognition",
+    "slug": "systems-perception-and-pattern-recognition",
+    "count": 20,
+    "section": "Models & Systems",
+    "color": "#6DA5AB"
+  },
+  {
+    "name": "Attentional Control",
+    "slug": "attentional-control",
+    "count": 25,
+    "section": "Cognitive Strategies",
+    "color": "#72A89E"
+  },
+  {
+    "name": "Interoceptive Awareness",
+    "slug": "interoceptive-awareness",
+    "count": 20,
+    "section": "Awareness & Regulation",
+    "color": "#6FA898"
+  },
+  {
+    "name": "Working Memory & Executive Function",
+    "slug": "working-memory-and-executive-function",
+    "count": 20,
+    "section": "Cognitive Strategies",
+    "color": "#7AAB8A"
+  },
+  {
+    "name": "Ego Observation & Non-Identification",
+    "slug": "ego-observation-and-non-identification",
+    "count": 20,
+    "section": "Awareness & Regulation",
+    "color": "#8EA87A"
+  },
+  {
+    "name": "Contemplative Practice Methods",
+    "slug": "contemplative-practice-methods",
+    "count": 25,
+    "section": "Practice & Application",
+    "color": "#B5A46A"
+  },
+  {
+    "name": "Social & Collective Metacognition",
+    "slug": "social-and-collective-metacognition",
+    "count": 20,
+    "section": "Models & Systems",
+    "color": "#BFA06E"
+  },
+  {
+    "name": "Ecological Transfer & Contextual Sensitivity",
+    "slug": "ecological-transfer-and-contextual-sensitivity",
+    "count": 20,
+    "section": "Models & Systems",
+    "color": "#C4906A"
+  },
+  {
+    "name": "Metacognitive Measurement & Assessment",
+    "slug": "metacognitive-measurement-and-assessment",
+    "count": 25,
+    "section": "Practice & Application",
+    "color": "#C49A78"
+  },
+  {
+    "name": "Training Protocols & Dose-Response",
+    "slug": "training-protocols-and-dose-response",
+    "count": 25,
+    "section": "Practice & Application",
+    "color": "#C4AA72"
+  },
+  {
+    "name": "ADHD-Optimized Design Patterns",
+    "slug": "adhd-optimized-design-patterns",
+    "count": 25,
+    "section": "Practice & Application",
+    "color": "#95A872"
+  },
+  {
+    "name": "Adaptive Learning & Gamification Systems",
+    "slug": "adaptive-learning-and-gamification-systems",
+    "count": 25,
+    "section": "Practice & Application",
+    "color": "#72AB9E"
+  },
+  {
+    "name": "Thought Labeling & Verbalization",
+    "slug": "thought-labeling-and-verbalization",
+    "count": 20,
+    "section": "Awareness & Regulation",
+    "color": "#9E8ABF"
+  },
+  {
+    "name": "Metacognitive Monitoring Judgments",
+    "slug": "metacognitive-monitoring-judgments",
+    "count": 25,
+    "section": "Monitoring & Evaluation",
+    "color": "#8A9EC4"
+  },
+  {
+    "name": "Error Detection & Conflict Monitoring",
+    "slug": "error-detection-and-conflict-monitoring",
+    "count": 20,
+    "section": "Monitoring & Evaluation",
+    "color": "#7AA5C4"
+  },
+  {
+    "name": "State Awareness & Emotional Granularity",
+    "slug": "state-awareness-and-emotional-granularity",
+    "count": 20,
+    "section": "Awareness & Regulation",
+    "color": "#78AB95"
+  },
+  {
+    "name": "Bias & Heuristic Detection",
+    "slug": "bias-and-heuristic-detection",
+    "count": 25,
+    "section": "Monitoring & Evaluation",
+    "color": "#C4AE7A"
+  }
+]

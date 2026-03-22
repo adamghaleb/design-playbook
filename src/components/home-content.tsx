@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { CategoryCard } from "./category-card";
 import { MasonryGrid } from "./masonry-grid";
-import { BookOpen, Layers, Tag, TrendingUp } from "lucide-react";
+import { BookOpen, Layers, Tag, TrendingUp, FileText } from "lucide-react";
 import type { Section } from "@/lib/types";
 
 interface HomeContentProps {
@@ -14,6 +14,11 @@ interface HomeContentProps {
     totalTags: number;
     avgScore: number;
   };
+  basePath?: string;
+  playbookName?: string;
+  colorsLight?: Record<string, string>;
+  hasResearch?: boolean;
+  totalArticles?: number;
 }
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -34,14 +39,39 @@ const statIcons = [
   { icon: Layers },
   { icon: Tag },
   { icon: TrendingUp },
+  { icon: FileText },
 ];
 
-export function HomeContent({ sections, stats }: HomeContentProps) {
+export function HomeContent({
+  sections,
+  stats,
+  basePath = "/",
+  playbookName = "Design / Playbook",
+  colorsLight = {},
+  hasResearch,
+  totalArticles,
+}: HomeContentProps) {
+  // Split playbookName for the hero title styling
+  // If the name contains " / ", use that as the separator
+  // Otherwise split on space and put " / " between first and rest
+  const titleParts = playbookName.includes(" / ")
+    ? playbookName.split(" / ")
+    : (() => {
+        const words = playbookName.split(" ");
+        if (words.length >= 2) {
+          return [words[0], words.slice(1).join(" ")];
+        }
+        return [playbookName];
+      })();
+
   const statEntries = [
     { label: "Practices", value: stats.totalPractices },
     { label: "Categories", value: stats.totalCategories },
     { label: "Tags", value: stats.totalTags },
     { label: "Avg Score", value: stats.avgScore },
+    ...(hasResearch && totalArticles
+      ? [{ label: "Articles", value: totalArticles }]
+      : []),
   ];
 
   return (
@@ -60,9 +90,15 @@ export function HomeContent({ sections, stats }: HomeContentProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1, ease }}
         >
-          <span className="text-foreground">Design</span>
-          <span className="text-primary"> / </span>
-          <span className="text-foreground">Playbook</span>
+          {titleParts.length >= 2 ? (
+            <>
+              <span className="text-foreground">{titleParts[0]}</span>
+              <span className="text-primary"> / </span>
+              <span className="text-foreground">{titleParts[1]}</span>
+            </>
+          ) : (
+            <span className="text-foreground">{titleParts[0]}</span>
+          )}
         </motion.h1>
         <motion.p
           className="max-w-2xl text-lg leading-relaxed text-muted-foreground"
@@ -83,13 +119,13 @@ export function HomeContent({ sections, stats }: HomeContentProps) {
 
       {/* Stats */}
       <motion.div
-        className="mb-24 grid grid-cols-2 gap-6 sm:grid-cols-4"
+        className={`mb-24 grid grid-cols-2 gap-6 ${statEntries.length > 4 ? "sm:grid-cols-5" : "sm:grid-cols-4"}`}
         variants={staggerContainer}
         initial="initial"
         animate="animate"
       >
         {statEntries.map((stat, i) => {
-          const Icon = statIcons[i].icon;
+          const Icon = statIcons[i % statIcons.length].icon;
           return (
             <motion.div
               key={stat.label}
@@ -128,7 +164,13 @@ export function HomeContent({ sections, stats }: HomeContentProps) {
           </div>
           <MasonryGrid columns={{ sm: 2, lg: 3 }}>
             {section.categories.map((cat, i) => (
-              <CategoryCard key={cat.slug} category={cat} featured={i === 0} />
+              <CategoryCard
+                key={cat.slug}
+                category={cat}
+                featured={i === 0}
+                basePath={basePath}
+                colorsLight={colorsLight}
+              />
             ))}
           </MasonryGrid>
         </motion.div>

@@ -7,6 +7,7 @@ import {
   getCategoryBySlug,
   getCategoryColorLight,
 } from "@/lib/data";
+import { getPlaybook, getPlaybookSlugs } from "@/lib/playbooks";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/badge";
 import { ScoreDots } from "@/components/score-dots";
@@ -18,19 +19,26 @@ import { ArrowLeft, ArrowRight, ExternalLink, BookOpen } from "lucide-react";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
-  return getAllPractices().map((p) => ({ id: p.id }));
+  const params: { playbook: string; id: string }[] = [];
+  for (const playbook of getPlaybookSlugs()) {
+    for (const practice of getAllPractices(playbook)) {
+      params.push({ playbook, id: practice.id });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ playbook: string; id: string }>;
 }): Promise<Metadata> {
-  const { id } = await params;
-  const practice = getPracticeById(id);
-  if (!practice) return {};
+  const { playbook, id } = await params;
+  const pb = getPlaybook(playbook);
+  const practice = getPracticeById(playbook, id);
+  if (!pb || !practice) return {};
   return {
-    title: `${practice.title} — Design Playbook`,
+    title: `${practice.title} — ${pb.name}`,
     description: practice.context.slice(0, 160),
   };
 }
@@ -76,15 +84,22 @@ function parseSources(sources: string): { text: string; url?: string }[] {
 export default async function PracticePage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ playbook: string; id: string }>;
 }) {
-  const { id } = await params;
-  const practice = getPracticeById(id);
+  const { playbook, id } = await params;
+  const pb = getPlaybook(playbook);
+  if (!pb) notFound();
+
+  const practice = getPracticeById(playbook, id);
   if (!practice) notFound();
 
-  const category = getCategoryBySlug(practice.categorySlug);
-  const color = getCategoryColorLight(practice.category);
-  const { prev, next } = getAdjacentPractices(id, practice.categorySlug);
+  const category = getCategoryBySlug(playbook, practice.categorySlug);
+  const color = getCategoryColorLight(playbook, practice.category);
+  const { prev, next } = getAdjacentPractices(
+    playbook,
+    id,
+    practice.categorySlug,
+  );
   const sources = parseSources(practice.sources);
 
   return (
@@ -94,15 +109,16 @@ export default async function PracticePage({
           items={[
             {
               label: practice.category,
-              href: `/category/${practice.categorySlug}`,
+              href: `/${playbook}/category/${practice.categorySlug}`,
             },
             {
               label:
                 practice.title.length > 40
-                  ? practice.title.slice(0, 40) + "…"
+                  ? practice.title.slice(0, 40) + "..."
                   : practice.title,
             },
           ]}
+          basePath={`/${playbook}`}
         />
 
         {/* Header */}
@@ -196,7 +212,7 @@ export default async function PracticePage({
         <div className="flex items-center justify-between border-t border-border pt-10">
           {prev ? (
             <Link
-              href={`/practice/${prev.id}`}
+              href={`/${playbook}/practice/${prev.id}`}
               className="group flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
@@ -212,7 +228,7 @@ export default async function PracticePage({
           )}
           {next ? (
             <Link
-              href={`/practice/${next.id}`}
+              href={`/${playbook}/practice/${next.id}`}
               className="group flex items-center gap-2 rounded-md px-3 py-2 text-right text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
             >
               <div>

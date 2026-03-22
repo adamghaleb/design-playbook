@@ -7,12 +7,13 @@ import {
   useEffect,
   useCallback,
   useRef,
+  useMemo,
   type ReactNode,
 } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import Fuse from "fuse.js";
-import { getAllPractices, getAllCategories } from "@/lib/data";
+import type { Practice, Category } from "@/lib/types";
 import { Search, ArrowRight, FileText, Folder } from "lucide-react";
 import { ScoreDots } from "./score-dots";
 
@@ -30,9 +31,6 @@ export function useCommandPalette() {
   return useContext(CommandPaletteContext);
 }
 
-const practices = getAllPractices();
-const categories = getAllCategories();
-
 type SearchItem = {
   type: "practice" | "category";
   id: string;
@@ -42,37 +40,21 @@ type SearchItem = {
   score?: number;
 };
 
-const searchItems: SearchItem[] = [
-  ...categories.map((c) => ({
-    type: "category" as const,
-    id: c.slug,
-    title: c.name,
-    subtitle: `${c.count} practices · ${c.section}`,
-    href: `/category/${c.slug}`,
-  })),
-  ...practices.map((p) => ({
-    type: "practice" as const,
-    id: p.id,
-    title: p.title,
-    subtitle: `${p.id} · ${p.category}`,
-    href: `/practice/${p.id}`,
-    score: p.practicalityScore,
-  })),
-];
-
-const fuse = new Fuse(searchItems, {
-  keys: [
-    { name: "title", weight: 0.6 },
-    { name: "subtitle", weight: 0.3 },
-    { name: "id", weight: 0.1 },
-  ],
-  threshold: 0.4,
-  includeScore: true,
-});
-
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
-export function CommandPaletteProvider({ children }: { children: ReactNode }) {
+interface CommandPaletteProviderProps {
+  practices: Practice[];
+  categories: Category[];
+  basePath: string;
+  children: ReactNode;
+}
+
+export function CommandPaletteProvider({
+  practices,
+  categories,
+  basePath,
+  children,
+}: CommandPaletteProviderProps) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -89,23 +71,69 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  const searchItems = useMemo<SearchItem[]>(
+    () => [
+      ...categories.map((c) => ({
+        type: "category" as const,
+        id: c.slug,
+        title: c.name,
+        subtitle: `${c.count} practices · ${c.section}`,
+        href: `${basePath}/category/${c.slug}`,
+      })),
+      ...practices.map((p) => ({
+        type: "practice" as const,
+        id: p.id,
+        title: p.title,
+        subtitle: `${p.id} · ${p.category}`,
+        href: `${basePath}/practice/${p.id}`,
+        score: p.practicalityScore,
+      })),
+    ],
+    [practices, categories, basePath],
+  );
+
   return (
     <CommandPaletteContext.Provider value={{ open, setOpen }}>
       {children}
       <AnimatePresence>
-        {open && <CommandPalette onClose={() => setOpen(false)} />}
+        {open && (
+          <CommandPalette
+            searchItems={searchItems}
+            onClose={() => setOpen(false)}
+          />
+        )}
       </AnimatePresence>
     </CommandPaletteContext.Provider>
   );
 }
 
-function CommandPalette({ onClose }: { onClose: () => void }) {
+function CommandPalette({
+  searchItems,
+  onClose,
+}: {
+  searchItems: SearchItem[];
+  onClose: () => void;
+}) {
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  const fuse = useMemo(
+    () =>
+      new Fuse(searchItems, {
+        keys: [
+          { name: "title", weight: 0.6 },
+          { name: "subtitle", weight: 0.3 },
+          { name: "id", weight: 0.1 },
+        ],
+        threshold: 0.4,
+        includeScore: true,
+      }),
+    [searchItems],
+  );
 
   // Focus trap (UX-003)
   useEffect(() => {

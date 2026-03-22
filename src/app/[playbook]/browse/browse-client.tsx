@@ -14,6 +14,7 @@ interface BrowseClientProps {
   practices: Practice[];
   categories: Category[];
   tags: string[];
+  basePath: string;
 }
 
 const fuse = new Fuse<Practice>([], {
@@ -32,6 +33,7 @@ export function BrowseClient({
   practices,
   categories,
   tags,
+  basePath,
 }: BrowseClientProps) {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -262,7 +264,12 @@ export function BrowseClient({
             columns={{ sm: 2 }}
           >
             {paginated.map((p) => (
-              <PracticeCard key={p.id} practice={p} showCategory />
+              <PracticeCard
+                key={p.id}
+                practice={p}
+                showCategory
+                basePath={basePath}
+              />
             ))}
           </MasonryGrid>
 

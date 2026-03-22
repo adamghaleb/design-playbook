@@ -5,14 +5,27 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, Menu, X, Search } from "lucide-react";
 import { useCommandPalette } from "./command-palette";
+import { usePlaybook } from "./playbook-context";
 import { NavLinks } from "./nav-links";
 import { ThemeToggle } from "./theme-toggle";
+import type { Section } from "@/lib/types";
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
-export function MobileNav() {
+interface MobileNavProps {
+  sections: Section[];
+  colorsLight: Record<string, string>;
+  hasResearch?: boolean;
+}
+
+export function MobileNav({
+  sections,
+  colorsLight,
+  hasResearch,
+}: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const { setOpen: setCommandOpen } = useCommandPalette();
+  const playbook = usePlaybook();
 
   const closeDrawer = useCallback(() => setOpen(false), []);
 
@@ -22,8 +35,11 @@ export function MobileNav() {
       <header className="fixed top-0 left-0 right-0 z-40 flex h-14 items-center justify-between border-b border-border-subtle bg-card/80 backdrop-blur-sm px-4 lg:hidden">
         <div className="flex items-center gap-2">
           <BookOpen className="h-5 w-5 text-primary" />
-          <Link href="/" className="font-serif text-sm font-medium">
-            Design Playbook
+          <Link
+            href={`/${playbook.slug}`}
+            className="font-serif text-sm font-medium"
+          >
+            {playbook.name}
           </Link>
         </div>
         <div className="flex items-center gap-1">
@@ -70,7 +86,12 @@ export function MobileNav() {
               transition={{ duration: 0.25, ease }}
             >
               <div className="p-3">
-                <NavLinks onNavigate={closeDrawer} />
+                <NavLinks
+                  sections={sections}
+                  colorsLight={colorsLight}
+                  hasResearch={hasResearch}
+                  onNavigate={closeDrawer}
+                />
               </div>
             </motion.nav>
           </>

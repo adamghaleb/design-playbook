@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import type { Category } from "@/lib/types";
-import { CATEGORY_COLORS_LIGHT } from "@/lib/types";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface CategoryCardProps {
   category: Category;
   featured?: boolean;
+  basePath?: string;
+  colorsLight?: Record<string, string>;
 }
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -16,13 +17,15 @@ const ease = [0.25, 0.1, 0.25, 1] as const;
 export function CategoryCard({
   category,
   featured = false,
+  basePath = "/",
+  colorsLight = {},
 }: CategoryCardProps) {
-  const mutedColor = CATEGORY_COLORS_LIGHT[category.name] || category.color;
+  const mutedColor = colorsLight[category.name] || category.color;
 
   return (
     <motion.div whileHover={{ y: -2 }} transition={{ duration: 0.15, ease }}>
       <Link
-        href={`/category/${category.slug}`}
+        href={`${basePath}/category/${category.slug}`}
         className={`group relative flex flex-col justify-between overflow-hidden rounded-md border border-border-subtle bg-surface-1 transition-all duration-200 hover:border-border-hover card-elevated noise ${
           featured ? "p-10" : "p-8"
         }`}

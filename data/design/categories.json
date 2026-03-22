@@ -1,0 +1,191 @@
+[
+  {
+    "name": "Accessibility",
+    "slug": "accessibility",
+    "count": 13,
+    "section": "Process",
+    "color": "#a3e635"
+  },
+  {
+    "name": "Behavioral Psychology",
+    "slug": "behavioral-psychology",
+    "count": 30,
+    "section": "Psychology",
+    "color": "#d946ef"
+  },
+  {
+    "name": "Cognitive Load",
+    "slug": "cognitive-load",
+    "count": 30,
+    "section": "Psychology",
+    "color": "#ef4444"
+  },
+  {
+    "name": "Cognitive Psychology",
+    "slug": "cognitive-psychology",
+    "count": 23,
+    "section": "Psychology",
+    "color": "#ec4899"
+  },
+  {
+    "name": "Component Patterns",
+    "slug": "component-patterns",
+    "count": 16,
+    "section": "Interaction",
+    "color": "#84cc16"
+  },
+  {
+    "name": "Dashboard Design",
+    "slug": "dashboard-design",
+    "count": 19,
+    "section": "Domain-Specific",
+    "color": "#60a5fa"
+  },
+  {
+    "name": "Data Display & Tables",
+    "slug": "data-display-and-tables",
+    "count": 20,
+    "section": "Domain-Specific",
+    "color": "#38bdf8"
+  },
+  {
+    "name": "Design Process & Methodology",
+    "slug": "design-process-and-methodology",
+    "count": 31,
+    "section": "Process",
+    "color": "#f59e0b"
+  },
+  {
+    "name": "Design Systems & Tokens",
+    "slug": "design-systems-and-tokens",
+    "count": 9,
+    "section": "Visual Design",
+    "color": "#3b82f6"
+  },
+  {
+    "name": "Desktop-Specific Patterns",
+    "slug": "desktop-specific-patterns",
+    "count": 26,
+    "section": "Domain-Specific",
+    "color": "#34d399"
+  },
+  {
+    "name": "Enterprise & B2B Patterns",
+    "slug": "enterprise-and-b2b-patterns",
+    "count": 30,
+    "section": "Domain-Specific",
+    "color": "#2dd4bf"
+  },
+  {
+    "name": "Feedback & Error Handling",
+    "slug": "feedback-and-error-handling",
+    "count": 17,
+    "section": "Interaction",
+    "color": "#22c55e"
+  },
+  {
+    "name": "Forms & Input",
+    "slug": "forms-and-input",
+    "count": 15,
+    "section": "Interaction",
+    "color": "#10b981"
+  },
+  {
+    "name": "Gamification",
+    "slug": "gamification",
+    "count": 29,
+    "section": "Domain-Specific",
+    "color": "#c084fc"
+  },
+  {
+    "name": "Gestalt Principles",
+    "slug": "gestalt-principles",
+    "count": 55,
+    "section": "Visual Design",
+    "color": "#8b5cf6"
+  },
+  {
+    "name": "Human Biases in Interfaces",
+    "slug": "human-biases-in-interfaces",
+    "count": 85,
+    "section": "Psychology",
+    "color": "#f97316"
+  },
+  {
+    "name": "Human-Centered Design",
+    "slug": "human-centered-design",
+    "count": 19,
+    "section": "Process",
+    "color": "#f97316"
+  },
+  {
+    "name": "Interaction Patterns",
+    "slug": "interaction-patterns",
+    "count": 35,
+    "section": "Interaction",
+    "color": "#06b6d4"
+  },
+  {
+    "name": "Layout & Visual Hierarchy",
+    "slug": "layout-and-visual-hierarchy",
+    "count": 13,
+    "section": "Visual Design",
+    "color": "#6366f1"
+  },
+  {
+    "name": "Loading & Performance Perception",
+    "slug": "loading-and-performance-perception",
+    "count": 8,
+    "section": "Visual Design",
+    "color": "#0ea5e9"
+  },
+  {
+    "name": "Navigation & Information Architecture",
+    "slug": "navigation-and-information-architecture",
+    "count": 16,
+    "section": "Interaction",
+    "color": "#14b8a6"
+  },
+  {
+    "name": "Onboarding & Empty States",
+    "slug": "onboarding-and-empty-states",
+    "count": 12,
+    "section": "Domain-Specific",
+    "color": "#fcd34d"
+  },
+  {
+    "name": "Product Strategy",
+    "slug": "product-strategy",
+    "count": 19,
+    "section": "Process",
+    "color": "#fb923c"
+  },
+  {
+    "name": "Reading Psychology",
+    "slug": "reading-psychology",
+    "count": 29,
+    "section": "Psychology",
+    "color": "#a855f7"
+  },
+  {
+    "name": "Search Filter & Sort",
+    "slug": "search-filter-and-sort",
+    "count": 11,
+    "section": "Interaction",
+    "color": "#eab308"
+  },
+  {
+    "name": "Usability Heuristics",
+    "slug": "usability-heuristics",
+    "count": 3,
+    "section": "Process",
+    "color": "#fbbf24"
+  },
+  {
+    "name": "Workflow & Multi-Step Processes",
+    "slug": "workflow-and-multi-step-processes",
+    "count": 20,
+    "section": "Domain-Specific",
+    "color": "#fb7185"
+  }
+]

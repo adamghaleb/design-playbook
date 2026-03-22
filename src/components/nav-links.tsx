@@ -2,32 +2,39 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getSections } from "@/lib/data";
-import { CATEGORY_COLORS_LIGHT } from "@/lib/types";
+import { usePlaybook } from "./playbook-context";
 import type { Section } from "@/lib/types";
 
-const sections = getSections();
-
 interface NavLinksProps {
+  sections: Section[];
+  colorsLight: Record<string, string>;
+  hasResearch?: boolean;
   onNavigate?: () => void;
 }
 
-export function NavLinks({ onNavigate }: NavLinksProps) {
+export function NavLinks({
+  sections,
+  colorsLight,
+  hasResearch,
+  onNavigate,
+}: NavLinksProps) {
   const pathname = usePathname();
+  const playbook = usePlaybook();
+  const basePath = `/${playbook.slug}`;
 
   return (
     <>
       <div className="mb-2">
         <Link
-          href="/browse"
+          href={`${basePath}/browse`}
           onClick={onNavigate}
           className={`relative flex items-center rounded-md px-3 py-2 text-sm transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
-            pathname === "/browse"
+            pathname === `${basePath}/browse`
               ? "bg-primary-glow text-foreground"
               : "text-muted-foreground hover:bg-surface-2/60 hover:text-foreground hover:translate-x-0.5"
           }`}
         >
-          {pathname === "/browse" && (
+          {pathname === `${basePath}/browse` && (
             <span className="absolute left-0 top-1.5 bottom-1.5 w-[2px] rounded-full bg-primary transition-all duration-300" />
           )}
           Browse All
@@ -38,20 +45,47 @@ export function NavLinks({ onNavigate }: NavLinksProps) {
         <NavSection
           key={section.name}
           section={section}
+          colorsLight={colorsLight}
+          basePath={basePath}
           pathname={pathname}
           onNavigate={onNavigate}
         />
       ))}
+
+      {hasResearch && (
+        <div className="mb-2 mt-4 border-t border-border-subtle pt-4">
+          <Link
+            href={`${basePath}/research`}
+            onClick={onNavigate}
+            className={`relative flex items-center rounded-md px-3 py-2 text-sm transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
+              pathname === `${basePath}/research` ||
+              pathname.startsWith(`${basePath}/research/`)
+                ? "bg-primary-glow text-foreground"
+                : "text-muted-foreground hover:bg-surface-2/60 hover:text-foreground hover:translate-x-0.5"
+            }`}
+          >
+            {(pathname === `${basePath}/research` ||
+              pathname.startsWith(`${basePath}/research/`)) && (
+              <span className="absolute left-0 top-1.5 bottom-1.5 w-[2px] rounded-full bg-primary transition-all duration-300" />
+            )}
+            Research
+          </Link>
+        </div>
+      )}
     </>
   );
 }
 
 function NavSection({
   section,
+  colorsLight,
+  basePath,
   pathname,
   onNavigate,
 }: {
   section: Section;
+  colorsLight: Record<string, string>;
+  basePath: string;
   pathname: string;
   onNavigate?: () => void;
 }) {
@@ -62,13 +96,13 @@ function NavSection({
       </h3>
       {section.categories.map((cat) => {
         const isActive =
-          pathname === `/category/${cat.slug}` ||
-          pathname.startsWith(`/category/${cat.slug}/`);
-        const mutedColor = CATEGORY_COLORS_LIGHT[cat.name] || cat.color;
+          pathname === `${basePath}/category/${cat.slug}` ||
+          pathname.startsWith(`${basePath}/category/${cat.slug}/`);
+        const mutedColor = colorsLight[cat.name] || cat.color;
         return (
           <Link
             key={cat.slug}
-            href={`/category/${cat.slug}`}
+            href={`${basePath}/category/${cat.slug}`}
             onClick={onNavigate}
             className={`group relative flex items-center justify-between rounded-md px-3 py-2 text-sm transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
               isActive

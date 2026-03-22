@@ -1,0 +1,142 @@
+[
+  {
+    "name": "ADHD Reward Neuroscience",
+    "slug": "adhd-reward-neuroscience",
+    "count": 20,
+    "section": "Neuroscience & Psychology",
+    "color": "#E8523A"
+  },
+  {
+    "name": "Dopamine & Reinforcement Schedules",
+    "slug": "dopamine-reinforcement-schedules",
+    "count": 20,
+    "section": "Neuroscience & Psychology",
+    "color": "#D94E7A"
+  },
+  {
+    "name": "Flow State Engineering",
+    "slug": "flow-state-engineering",
+    "count": 20,
+    "section": "Neuroscience & Psychology",
+    "color": "#C74BBF"
+  },
+  {
+    "name": "Behavioral Habit Formation",
+    "slug": "behavioral-habit-formation",
+    "count": 25,
+    "section": "Neuroscience & Psychology",
+    "color": "#A84DD4"
+  },
+  {
+    "name": "Variable Ratio & Loot Systems",
+    "slug": "variable-ratio-loot-systems",
+    "count": 20,
+    "section": "Core Game Mechanics",
+    "color": "#E87B2F"
+  },
+  {
+    "name": "Progression & Prestige Systems",
+    "slug": "progression-prestige-systems",
+    "count": 25,
+    "section": "Core Game Mechanics",
+    "color": "#D4A017"
+  },
+  {
+    "name": "Streak & Combo Mechanics",
+    "slug": "streak-combo-mechanics",
+    "count": 15,
+    "section": "Core Game Mechanics",
+    "color": "#E85D3A"
+  },
+  {
+    "name": "Achievement & Badge Psychology",
+    "slug": "achievement-badge-psychology",
+    "count": 15,
+    "section": "Core Game Mechanics",
+    "color": "#C9952B"
+  },
+  {
+    "name": "Novelty & Anti-Boredom Systems",
+    "slug": "novelty-anti-boredom-systems",
+    "count": 20,
+    "section": "Core Game Mechanics",
+    "color": "#E54D8B"
+  },
+  {
+    "name": "The 'Just One More' Loop",
+    "slug": "the-just-one-more-loop",
+    "count": 15,
+    "section": "Core Game Mechanics",
+    "color": "#D96A3F"
+  },
+  {
+    "name": "Social & Multiplayer Mechanics",
+    "slug": "social-multiplayer-mechanics",
+    "count": 20,
+    "section": "Engagement & Social",
+    "color": "#3BAE8C"
+  },
+  {
+    "name": "Urgency & Time Pressure",
+    "slug": "urgency-time-pressure",
+    "count": 15,
+    "section": "Engagement & Social",
+    "color": "#D93636"
+  },
+  {
+    "name": "Identity Scaffolding & Character Systems",
+    "slug": "identity-scaffolding-character-systems",
+    "count": 20,
+    "section": "Engagement & Social",
+    "color": "#6B5BD4"
+  },
+  {
+    "name": "Meaning-Making & Existential Gamification",
+    "slug": "meaning-making-existential-gamification",
+    "count": 20,
+    "section": "Engagement & Social",
+    "color": "#4A7FD4"
+  },
+  {
+    "name": "Future Self & Trajectory Visualization",
+    "slug": "future-self-trajectory-visualization",
+    "count": 15,
+    "section": "Engagement & Social",
+    "color": "#2BA5B8"
+  },
+  {
+    "name": "Narrative & Hero's Journey Framing",
+    "slug": "narrative-heros-journey-framing",
+    "count": 15,
+    "section": "Engagement & Social",
+    "color": "#7B48C4"
+  },
+  {
+    "name": "Anti-Abandonment & Recovery",
+    "slug": "anti-abandonment-recovery",
+    "count": 20,
+    "section": "Lifecycle & Retention",
+    "color": "#3D9E5E"
+  },
+  {
+    "name": "Onboarding & First Session Design",
+    "slug": "onboarding-first-session-design",
+    "count": 15,
+    "section": "Lifecycle & Retention",
+    "color": "#4DB89E"
+  },
+  {
+    "name": "Endgame & Long-Term Retention",
+    "slug": "endgame-long-term-retention",
+    "count": 20,
+    "section": "Lifecycle & Retention",
+    "color": "#2E8B8B"
+  },
+  {
+    "name": "Daily Loop & Session Architecture",
+    "slug": "daily-loop-session-architecture",
+    "count": 20,
+    "section": "Lifecycle & Retention",
+    "color": "#5C9E3D"
+  }
+]

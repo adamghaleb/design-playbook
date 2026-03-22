@@ -5,44 +5,58 @@ import {
   getPracticesByCategory,
   getCategoryColorLight,
 } from "@/lib/data";
+import { getPlaybook, getPlaybookSlugs } from "@/lib/playbooks";
 import { PracticeGrid } from "@/components/practice-grid";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/badge";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
-  return getAllCategories().map((c) => ({ slug: c.slug }));
+  const params: { playbook: string; slug: string }[] = [];
+  for (const playbook of getPlaybookSlugs()) {
+    for (const category of getAllCategories(playbook)) {
+      params.push({ playbook, slug: category.slug });
+    }
+  }
+  return params;
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ playbook: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const category = getCategoryBySlug(slug);
-  if (!category) return {};
+  const { playbook, slug } = await params;
+  const pb = getPlaybook(playbook);
+  const category = getCategoryBySlug(playbook, slug);
+  if (!pb || !category) return {};
   return {
-    title: `${category.name} — Design Playbook`,
-    description: `${category.count} UX best practices in ${category.name}`,
+    title: `${category.name} — ${pb.name}`,
+    description: `${category.count} best practices in ${category.name}`,
   };
 }
 
 export default async function CategoryPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ playbook: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const category = getCategoryBySlug(slug);
+  const { playbook, slug } = await params;
+  const pb = getPlaybook(playbook);
+  if (!pb) notFound();
+
+  const category = getCategoryBySlug(playbook, slug);
   if (!category) notFound();
 
-  const practices = getPracticesByCategory(slug);
-  const mutedColor = getCategoryColorLight(category.name);
+  const practices = getPracticesByCategory(playbook, slug);
+  const mutedColor = getCategoryColorLight(playbook, category.name);
 
   return (
     <div>
-      <Breadcrumbs items={[{ label: category.name }]} />
+      <Breadcrumbs
+        items={[{ label: category.name }]}
+        basePath={`/${playbook}`}
+      />
 
       <div className="relative mb-16">
         {/* Ambient category color glow */}
@@ -71,7 +85,7 @@ export default async function CategoryPage({
         </p>
       </div>
 
-      <PracticeGrid practices={practices} />
+      <PracticeGrid practices={practices} basePath={`/${playbook}`} />
     </div>
   );
 }

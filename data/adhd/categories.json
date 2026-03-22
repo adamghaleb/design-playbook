@@ -1,0 +1,268 @@
+[
+  {
+    "name": "Neurobiology & Brain Architecture",
+    "slug": "neurobiology-brain-architecture",
+    "count": 25,
+    "section": "Neuroscience & Biology",
+    "color": "#E05A3A"
+  },
+  {
+    "name": "Neurotransmitter Systems",
+    "slug": "neurotransmitter-systems",
+    "count": 25,
+    "section": "Neuroscience & Biology",
+    "color": "#D94F8A"
+  },
+  {
+    "name": "Genetics & Heritability",
+    "slug": "genetics-heritability",
+    "count": 20,
+    "section": "Neuroscience & Biology",
+    "color": "#C44ED4"
+  },
+  {
+    "name": "Sensory Processing & Interoception",
+    "slug": "sensory-processing-interoception",
+    "count": 15,
+    "section": "Neuroscience & Biology",
+    "color": "#8B5CF6"
+  },
+  {
+    "name": "Evolutionary Psychology of ADHD",
+    "slug": "evolutionary-psychology-of-adhd",
+    "count": 25,
+    "section": "Identity & Culture",
+    "color": "#6366F1"
+  },
+  {
+    "name": "Neurodiversity & Identity",
+    "slug": "neurodiversity-identity",
+    "count": 25,
+    "section": "Identity & Culture",
+    "color": "#4F7DF7"
+  },
+  {
+    "name": "ADHD as Spiritual Configuration",
+    "slug": "adhd-as-spiritual-configuration",
+    "count": 25,
+    "section": "Identity & Culture",
+    "color": "#3B82F6"
+  },
+  {
+    "name": "Cross-Cultural & Historical Views",
+    "slug": "cross-cultural-historical-views",
+    "count": 20,
+    "section": "Identity & Culture",
+    "color": "#0EA5E9"
+  },
+  {
+    "name": "Assessment & Diagnostic Frameworks",
+    "slug": "assessment-diagnostic-frameworks",
+    "count": 25,
+    "section": "Diagnosis & Clinical",
+    "color": "#06B6D4"
+  },
+  {
+    "name": "ADHD Subtypes & Presentations",
+    "slug": "adhd-subtypes-presentations",
+    "count": 20,
+    "section": "Diagnosis & Clinical",
+    "color": "#14B8A6"
+  },
+  {
+    "name": "Comorbidities & Differential Diagnosis",
+    "slug": "comorbidities-differential-diagnosis",
+    "count": 30,
+    "section": "Diagnosis & Clinical",
+    "color": "#10B981"
+  },
+  {
+    "name": "Lifespan Development & Age-Specific Manifestation",
+    "slug": "lifespan-development-age-specific-manifestation",
+    "count": 25,
+    "section": "Diagnosis & Clinical",
+    "color": "#22C55E"
+  },
+  {
+    "name": "Pharmacological Treatment",
+    "slug": "pharmacological-treatment",
+    "count": 35,
+    "section": "Treatment & Intervention",
+    "color": "#84CC16"
+  },
+  {
+    "name": "Psychotherapy & Behavioral Interventions",
+    "slug": "psychotherapy-behavioral-interventions",
+    "count": 30,
+    "section": "Treatment & Intervention",
+    "color": "#EAB308"
+  },
+  {
+    "name": "Coaching & Accountability Systems",
+    "slug": "coaching-accountability-systems",
+    "count": 20,
+    "section": "Treatment & Intervention",
+    "color": "#F59E0B"
+  },
+  {
+    "name": "Nutrition, Exercise & Lifestyle Medicine",
+    "slug": "nutrition-exercise-lifestyle-medicine",
+    "count": 26,
+    "section": "Treatment & Intervention",
+    "color": "#F97316"
+  },
+  {
+    "name": "Mindfulness, Meditation & Contemplative Practices",
+    "slug": "mindfulness-meditation-contemplative-practices",
+    "count": 20,
+    "section": "Treatment & Intervention",
+    "color": "#EF4444"
+  },
+  {
+    "name": "Alternative & Emerging Therapies",
+    "slug": "alternative-emerging-therapies",
+    "count": 20,
+    "section": "Treatment & Intervention",
+    "color": "#EC4899"
+  },
+  {
+    "name": "Working Memory & Cognitive Load",
+    "slug": "working-memory-cognitive-load",
+    "count": 25,
+    "section": "Cognition & Self-Regulation",
+    "color": "#A855F7"
+  },
+  {
+    "name": "Attention Regulation & Focus Management",
+    "slug": "attention-regulation-focus-management",
+    "count": 25,
+    "section": "Cognition & Self-Regulation",
+    "color": "#7C3AED"
+  },
+  {
+    "name": "Impulse Control & Self-Regulation",
+    "slug": "impulse-control-self-regulation",
+    "count": 20,
+    "section": "Cognition & Self-Regulation",
+    "color": "#6D28D9"
+  },
+  {
+    "name": "Time Perception & Time Management",
+    "slug": "time-perception-time-management",
+    "count": 25,
+    "section": "Cognition & Self-Regulation",
+    "color": "#4338CA"
+  },
+  {
+    "name": "Planning, Prioritization & Decision-Making",
+    "slug": "planning-prioritization-decision-making",
+    "count": 20,
+    "section": "Cognition & Self-Regulation",
+    "color": "#1D4ED8"
+  },
+  {
+    "name": "Task Initiation & Procrastination",
+    "slug": "task-initiation-procrastination",
+    "count": 21,
+    "section": "Cognition & Self-Regulation",
+    "color": "#0369A1"
+  },
+  {
+    "name": "Emotional Dysregulation & RSD",
+    "slug": "emotional-dysregulation-rsd",
+    "count": 25,
+    "section": "Cognition & Self-Regulation",
+    "color": "#0E7490"
+  },
+  {
+    "name": "Relationships & Communication",
+    "slug": "relationships-communication",
+    "count": 25,
+    "section": "Relationships & Wellbeing",
+    "color": "#0F766E"
+  },
+  {
+    "name": "Self-Esteem, Shame & Identity",
+    "slug": "self-esteem-shame-identity",
+    "count": 20,
+    "section": "Relationships & Wellbeing",
+    "color": "#059669"
+  },
+  {
+    "name": "Stress, Burnout & Recovery",
+    "slug": "stress-burnout-recovery",
+    "count": 25,
+    "section": "Relationships & Wellbeing",
+    "color": "#16A34A"
+  },
+  {
+    "name": "Productivity Systems & Frameworks",
+    "slug": "productivity-systems-frameworks",
+    "count": 35,
+    "section": "Systems & Tools",
+    "color": "#65A30D"
+  },
+  {
+    "name": "Software Tools & Digital Workflows",
+    "slug": "software-tools-digital-workflows",
+    "count": 25,
+    "section": "Systems & Tools",
+    "color": "#CA8A04"
+  },
+  {
+    "name": "Physical Environment & Sensory Design",
+    "slug": "physical-environment-sensory-design",
+    "count": 20,
+    "section": "Systems & Tools",
+    "color": "#D97706"
+  },
+  {
+    "name": "Habit Architecture & Routine Design",
+    "slug": "habit-architecture-routine-design",
+    "count": 30,
+    "section": "Systems & Tools",
+    "color": "#EA580C"
+  },
+  {
+    "name": "External Brain & Knowledge Management",
+    "slug": "external-brain-knowledge-management",
+    "count": 20,
+    "section": "Systems & Tools",
+    "color": "#DC2626"
+  },
+  {
+    "name": "Entrepreneurship & ADHD Advantages",
+    "slug": "entrepreneurship-adhd-advantages",
+    "count": 25,
+    "section": "Career & Work",
+    "color": "#DB2777"
+  },
+  {
+    "name": "Workplace Strategy & Accommodations",
+    "slug": "workplace-strategy-accommodations",
+    "count": 25,
+    "section": "Career & Work",
+    "color": "#9333EA"
+  },
+  {
+    "name": "Leadership & Team Dynamics",
+    "slug": "leadership-team-dynamics",
+    "count": 25,
+    "section": "Career & Work",
+    "color": "#7E22CE"
+  },
+  {
+    "name": "Financial Management & ADHD",
+    "slug": "financial-management-adhd",
+    "count": 20,
+    "section": "Career & Work",
+    "color": "#6B21A8"
+  },
+  {
+    "name": "Career Design & Job Fit",
+    "slug": "career-design-job-fit",
+    "count": 25,
+    "section": "Career & Work",
+    "color": "#5B21B6"
+  }
+]

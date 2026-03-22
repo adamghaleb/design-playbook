@@ -3,11 +3,20 @@
 import Link from "next/link";
 import { BookOpen, Search } from "lucide-react";
 import { useCommandPalette } from "./command-palette";
+import { usePlaybook } from "./playbook-context";
 import { NavLinks } from "./nav-links";
 import { ThemeToggle } from "./theme-toggle";
+import type { Section } from "@/lib/types";
 
-export function Sidebar() {
+interface SidebarProps {
+  sections: Section[];
+  colorsLight: Record<string, string>;
+  hasResearch?: boolean;
+}
+
+export function Sidebar({ sections, colorsLight, hasResearch }: SidebarProps) {
   const { setOpen } = useCommandPalette();
+  const playbook = usePlaybook();
 
   return (
     <aside className="fixed left-0 top-0 z-30 hidden h-screen w-[280px] border-r border-border-subtle bg-gradient-to-b from-surface-2 to-card lg:block">
@@ -16,10 +25,10 @@ export function Sidebar() {
         <div className="flex h-14 items-center gap-2 border-b border-border-subtle px-5">
           <BookOpen className="h-5 w-5 text-primary" />
           <Link
-            href="/"
+            href={`/${playbook.slug}`}
             className="font-serif text-sm font-medium tracking-tight"
           >
-            Design Playbook
+            {playbook.name}
           </Link>
         </div>
 
@@ -39,7 +48,11 @@ export function Sidebar() {
 
         {/* Navigation — UX-276: Left-side vertical nav for complex IA */}
         <nav className="sidebar-scroll flex-1 overflow-y-auto overflow-x-hidden px-3 py-3">
-          <NavLinks />
+          <NavLinks
+            sections={sections}
+            colorsLight={colorsLight}
+            hasResearch={hasResearch}
+          />
         </nav>
 
         {/* Footer with theme toggle */}
