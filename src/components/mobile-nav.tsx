@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { BookOpen, Menu, X, Search } from "lucide-react";
+import { BookOpen, Menu, X, Search, ArrowLeft } from "lucide-react";
 import { useCommandPalette } from "./command-palette";
 import { usePlaybook } from "./playbook-context";
 import { NavLinks } from "./nav-links";
@@ -86,6 +86,14 @@ export function MobileNav({
               transition={{ duration: 0.25, ease }}
             >
               <div className="p-3">
+                <Link
+                  href="/"
+                  onClick={closeDrawer}
+                  className="group mb-3 flex items-center gap-2 rounded-md px-3 py-2 text-xs text-muted-foreground/50 transition-all duration-200 hover:bg-surface-2/60 hover:text-muted-foreground"
+                >
+                  <ArrowLeft className="h-3 w-3 transition-transform duration-200 group-hover:-translate-x-0.5" />
+                  <span>All Playbooks</span>
+                </Link>
                 <NavLinks
                   sections={sections}
                   colorsLight={colorsLight}

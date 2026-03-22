@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, Search } from "lucide-react";
+import { BookOpen, Search, ArrowLeft } from "lucide-react";
 import { useCommandPalette } from "./command-palette";
 import { usePlaybook } from "./playbook-context";
 import { NavLinks } from "./nav-links";
@@ -55,12 +55,21 @@ export function Sidebar({ sections, colorsLight, hasResearch }: SidebarProps) {
           />
         </nav>
 
-        {/* Footer with theme toggle */}
-        <div className="flex items-center justify-between border-t border-border-subtle px-5 py-3">
-          <span className="font-mono text-[10px] text-muted-foreground/40">
-            v1.0
-          </span>
-          <ThemeToggle />
+        {/* Footer */}
+        <div className="border-t border-border-subtle px-3 py-3 space-y-2">
+          <Link
+            href="/"
+            className="group flex items-center gap-2 rounded-md px-2 py-1.5 text-xs text-muted-foreground/50 transition-all duration-200 hover:bg-surface-2/60 hover:text-muted-foreground"
+          >
+            <ArrowLeft className="h-3 w-3 transition-transform duration-200 group-hover:-translate-x-0.5" />
+            <span>All Playbooks</span>
+          </Link>
+          <div className="flex items-center justify-between px-2">
+            <span className="font-mono text-[10px] text-muted-foreground/40">
+              v1.0
+            </span>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </aside>
