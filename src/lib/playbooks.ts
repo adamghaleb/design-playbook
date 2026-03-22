@@ -49,6 +49,16 @@ const playbooks: PlaybookConfig[] = [
     icon: "Lightbulb",
     hasResearch: false,
   },
+  {
+    slug: "plugins",
+    name: "Plugin Design Playbook",
+    shortName: "Plugin Design",
+    description:
+      "508 best practices for Adobe plugin UI — knobs, dials, panels, and creative tool interfaces for AE & Premiere.",
+    accentColor: "#f43f5e",
+    icon: "Plug",
+    hasResearch: false,
+  },
 ];
 
 const playbookBySlug = new Map<string, PlaybookConfig>();

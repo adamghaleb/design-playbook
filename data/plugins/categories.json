@@ -1,0 +1,205 @@
+[
+  {
+    "name": "Knob & Dial Design",
+    "slug": "knob-dial-design",
+    "count": 20,
+    "section": "Controls & Interaction",
+    "color": "#E85D75"
+  },
+  {
+    "name": "Slider & Fader Design",
+    "slug": "slider-fader-design",
+    "count": 18,
+    "section": "Controls & Interaction",
+    "color": "#D94E8A"
+  },
+  {
+    "name": "Direct Manipulation & Spatial Controls",
+    "slug": "direct-manipulation-spatial-controls",
+    "count": 20,
+    "section": "Controls & Interaction",
+    "color": "#C74DB8"
+  },
+  {
+    "name": "Input Modes & Text Entry",
+    "slug": "input-modes-text-entry",
+    "count": 15,
+    "section": "Controls & Interaction",
+    "color": "#A855D6"
+  },
+  {
+    "name": "Keyboard Shortcuts & Power User Efficiency",
+    "slug": "keyboard-shortcuts-power-user-efficiency",
+    "count": 18,
+    "section": "Controls & Interaction",
+    "color": "#8B5CF6"
+  },
+  {
+    "name": "Neo-Skeumorphic Fundamentals",
+    "slug": "neo-skeumorphic-fundamentals",
+    "count": 20,
+    "section": "Visual & Aesthetic",
+    "color": "#6D6FF0"
+  },
+  {
+    "name": "Dark Mode & Color Systems",
+    "slug": "dark-mode-color-systems",
+    "count": 20,
+    "section": "Visual & Aesthetic",
+    "color": "#4F7FE8"
+  },
+  {
+    "name": "Depth, Shadow & Lighting",
+    "slug": "depth-shadow-lighting",
+    "count": 18,
+    "section": "Visual & Aesthetic",
+    "color": "#3B95E0"
+  },
+  {
+    "name": "Typography & Value Display",
+    "slug": "typography-value-display",
+    "count": 15,
+    "section": "Visual & Aesthetic",
+    "color": "#2DABD4"
+  },
+  {
+    "name": "Animation & Micro-Interactions",
+    "slug": "animation-micro-interactions",
+    "count": 22,
+    "section": "Visual & Aesthetic",
+    "color": "#22BFC2"
+  },
+  {
+    "name": "Visual Feedback & Meters",
+    "slug": "visual-feedback-meters",
+    "count": 18,
+    "section": "Visual & Aesthetic",
+    "color": "#20C997"
+  },
+  {
+    "name": "Progressive Disclosure Patterns",
+    "slug": "progressive-disclosure-patterns",
+    "count": 22,
+    "section": "Information Architecture",
+    "color": "#38D67A"
+  },
+  {
+    "name": "Preset Systems & Content Discovery",
+    "slug": "preset-systems-content-discovery",
+    "count": 20,
+    "section": "Information Architecture",
+    "color": "#5ACC5A"
+  },
+  {
+    "name": "Parameter Organization & Grouping",
+    "slug": "parameter-organization-grouping",
+    "count": 18,
+    "section": "Information Architecture",
+    "color": "#7EC843"
+  },
+  {
+    "name": "Contextual Controls & Conditional UI",
+    "slug": "contextual-controls-conditional-ui",
+    "count": 15,
+    "section": "Information Architecture",
+    "color": "#A8C030"
+  },
+  {
+    "name": "Expert Mode & Layout Switching",
+    "slug": "expert-mode-layout-switching",
+    "count": 15,
+    "section": "Information Architecture",
+    "color": "#CCB820"
+  },
+  {
+    "name": "Perceived Responsiveness & Latency",
+    "slug": "perceived-responsiveness-latency",
+    "count": 18,
+    "section": "Experience & Polish",
+    "color": "#E0A820"
+  },
+  {
+    "name": "Tactile & Haptic Feel in Digital Controls",
+    "slug": "tactile-haptic-feel-in-digital-controls",
+    "count": 18,
+    "section": "Experience & Polish",
+    "color": "#E89030"
+  },
+  {
+    "name": "Emotional Design & Visceral Quality",
+    "slug": "emotional-design-visceral-quality",
+    "count": 15,
+    "section": "Experience & Polish",
+    "color": "#E87842"
+  },
+  {
+    "name": "Onboarding & First-Use Experience",
+    "slug": "onboarding-first-use-experience",
+    "count": 15,
+    "section": "Experience & Polish",
+    "color": "#D46854"
+  },
+  {
+    "name": "Accessibility in Creative Tools",
+    "slug": "accessibility-in-creative-tools",
+    "count": 15,
+    "section": "Experience & Polish",
+    "color": "#C9607A"
+  },
+  {
+    "name": "Feature Gating & Tier Design",
+    "slug": "feature-gating-tier-design",
+    "count": 18,
+    "section": "Business & Monetization",
+    "color": "#B868A0"
+  },
+  {
+    "name": "Upgrade Path & Monetization UX",
+    "slug": "upgrade-path-monetization-ux",
+    "count": 15,
+    "section": "Business & Monetization",
+    "color": "#A070C0"
+  },
+  {
+    "name": "Pricing Psychology for Plugins",
+    "slug": "pricing-psychology-for-plugins",
+    "count": 12,
+    "section": "Business & Monetization",
+    "color": "#8878D8"
+  },
+  {
+    "name": "Design Tokens & Theming",
+    "slug": "design-tokens-theming",
+    "count": 20,
+    "section": "Architecture & Systems",
+    "color": "#7080E8"
+  },
+  {
+    "name": "Component Architecture (Atomic Design)",
+    "slug": "component-architecture-atomic-design",
+    "count": 20,
+    "section": "Architecture & Systems",
+    "color": "#5898E0"
+  },
+  {
+    "name": "Config-Driven Plugin Assembly",
+    "slug": "config-driven-plugin-assembly",
+    "count": 18,
+    "section": "Architecture & Systems",
+    "color": "#40B0D0"
+  },
+  {
+    "name": "Monorepo & Build Pipeline",
+    "slug": "monorepo-build-pipeline",
+    "count": 15,
+    "section": "Architecture & Systems",
+    "color": "#30C8B8"
+  },
+  {
+    "name": "Update Propagation & Versioning",
+    "slug": "update-propagation-versioning",
+    "count": 15,
+    "section": "Architecture & Systems",
+    "color": "#48D098"
+  }
+]

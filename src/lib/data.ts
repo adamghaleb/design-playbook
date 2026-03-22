@@ -27,6 +27,11 @@ import metacognitionCategories from "../../data/metacognition/categories.json";
 import metacognitionTags from "../../data/metacognition/tags.json";
 import metacognitionMeta from "../../data/metacognition/meta.json";
 
+import pluginsPractices from "../../data/plugins/practices.json";
+import pluginsCategories from "../../data/plugins/categories.json";
+import pluginsTags from "../../data/plugins/tags.json";
+import pluginsMeta from "../../data/plugins/meta.json";
+
 // Registry of all playbook data (add new playbooks here)
 const PLAYBOOK_DATA: Record<
   string,
@@ -65,6 +70,13 @@ const PLAYBOOK_DATA: Record<
     tags: metacognitionTags as string[],
     articles: [],
     meta: metacognitionMeta as PlaybookMeta,
+  },
+  plugins: {
+    practices: pluginsPractices as Practice[],
+    categories: pluginsCategories as Category[],
+    tags: pluginsTags as string[],
+    articles: [],
+    meta: pluginsMeta as PlaybookMeta,
   },
 };
 
