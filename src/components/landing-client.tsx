@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import type { PlaybookConfig } from "@/lib/playbooks";
@@ -18,21 +19,83 @@ interface PlaybookWithStats extends PlaybookConfig {
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
 
-// SVG path for the ink stroke underline
 const strokePath =
   "M0,8 C20,4 40,12 60,6 C80,0 100,10 120,8 C140,6 160,14 180,8 C200,2 220,12 240,8 C260,4 280,10 300,8";
+
+// When skipped, everything resolves instantly
+function t(skipped: boolean, delay: number, duration: number) {
+  if (skipped) return { duration: 0.15, delay: 0, ease };
+  return { duration, delay, ease };
+}
 
 export function LandingClient({
   playbooks,
 }: {
   playbooks: PlaybookWithStats[];
 }) {
+  const [skipped, setSkipped] = useState(false);
+  const skipHintControls = useAnimationControls();
+
+  const skip = useCallback(() => {
+    if (!skipped) setSkipped(true);
+  }, [skipped]);
+
+  // Listen for spacebar
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.code === "Space" && !e.repeat) {
+        // Don't prevent default if user is focused on a link/button
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        e.preventDefault();
+        skip();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [skip]);
+
+  // Show skip hint after a beat, hide when skipped
+  useEffect(() => {
+    if (skipped) {
+      skipHintControls.start({ opacity: 0, transition: { duration: 0.2 } });
+      return;
+    }
+    const timer = setTimeout(() => {
+      skipHintControls.start({ opacity: 1, transition: { duration: 0.4 } });
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [skipped, skipHintControls]);
+
+  // Also hide hint after animation would naturally finish
+  useEffect(() => {
+    if (skipped) return;
+    const timer = setTimeout(() => {
+      skipHintControls.start({ opacity: 0, transition: { duration: 0.5 } });
+    }, 3500);
+    return () => clearTimeout(timer);
+  }, [skipped, skipHintControls]);
+
   return (
     <div className="min-h-screen flex flex-col relative">
       {/* Theme toggle - top right */}
       <div className="fixed top-5 right-5 z-50">
         <ThemeToggle />
       </div>
+
+      {/* Skip hint */}
+      <motion.div
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
+        initial={{ opacity: 0 }}
+        animate={skipHintControls}
+      >
+        <span className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-surface-1/80 backdrop-blur-sm px-4 py-2 text-xs text-muted-foreground/60">
+          <kbd className="rounded border border-border px-1.5 py-0.5 font-mono text-[10px]">
+            space
+          </kbd>
+          skip animation
+        </span>
+      </motion.div>
 
       {/* Hero */}
       <div className="flex-1 flex flex-col items-center justify-center px-8 py-24 sm:py-32">
@@ -41,14 +104,14 @@ export function LandingClient({
             className="mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
+            transition={t(skipped, 0, 0.3)}
           >
             {/* "The Ultimate" — ink write-on effect */}
             <motion.span
               className="block font-bethany text-5xl sm:text-7xl tracking-tight text-foreground/90"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease }}
+              transition={t(skipped, 0.2, 0.6)}
             >
               {"The Ultimate".split("").map((char, i) => (
                 <motion.span
@@ -56,23 +119,19 @@ export function LandingClient({
                   className="inline-block"
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.08,
-                    delay: 0.3 + i * 0.04,
-                    ease,
-                  }}
+                  transition={t(skipped, 0.3 + i * 0.04, 0.08)}
                 >
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
               ))}
             </motion.span>
 
-            {/* "Playbook" — appears after "The Ultimate" */}
+            {/* "Playbook" */}
             <motion.span
               className="block font-serif text-4xl sm:text-6xl font-semibold tracking-tight mt-1"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.9, ease }}
+              transition={t(skipped, 0.9, 0.5)}
             >
               {"Playbook".split("").map((char, i) => (
                 <motion.span
@@ -80,11 +139,7 @@ export function LandingClient({
                   className="inline-block"
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.08,
-                    delay: 0.95 + i * 0.04,
-                    ease,
-                  }}
+                  transition={t(skipped, 0.95 + i * 0.04, 0.08)}
                 >
                   {char}
                 </motion.span>
@@ -96,7 +151,7 @@ export function LandingClient({
               className="flex justify-center mt-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.3 }}
+              transition={t(skipped, 1.3, 0.2)}
             >
               <svg
                 width="200"
@@ -113,34 +168,38 @@ export function LandingClient({
                   fill="none"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 0.5 }}
-                  transition={{
-                    pathLength: { duration: 0.8, delay: 1.3, ease },
-                    opacity: { duration: 0.2, delay: 1.3 },
-                  }}
+                  transition={
+                    skipped
+                      ? { duration: 0.15, delay: 0 }
+                      : {
+                          pathLength: { duration: 0.8, delay: 1.3, ease },
+                          opacity: { duration: 0.2, delay: 1.3 },
+                        }
+                  }
                 />
               </svg>
             </motion.div>
           </motion.h1>
 
-          {/* Subtitle fades in after title */}
+          {/* Subtitle */}
           <motion.p
             className="text-lg sm:text-xl text-muted-foreground max-w-lg mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.6, ease }}
+            transition={t(skipped, 1.6, 0.5)}
           >
             Research-backed playbooks for building better everything.
           </motion.p>
         </div>
 
-        {/* Playbook cards grid — each card draws its border then fades content in */}
+        {/* Playbook cards grid */}
         <div className="w-full max-w-3xl mx-auto grid gap-5 sm:grid-cols-2">
           {playbooks.map((pb, index) => (
             <motion.div
               key={pb.slug}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.15, delay: 1.8 + index * 0.12 }}
+              transition={t(skipped, 1.8 + index * 0.12, 0.15)}
             >
               <Link
                 href={`/${pb.slug}`}
@@ -163,60 +222,51 @@ export function LandingClient({
                     strokeWidth="1"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{
-                      pathLength: {
-                        duration: 0.6,
-                        delay: 1.9 + index * 0.12,
-                        ease,
-                      },
-                      opacity: {
-                        duration: 0.1,
-                        delay: 1.9 + index * 0.12,
-                      },
-                    }}
+                    transition={
+                      skipped
+                        ? { duration: 0.15, delay: 0 }
+                        : {
+                            pathLength: {
+                              duration: 0.6,
+                              delay: 1.9 + index * 0.12,
+                              ease,
+                            },
+                            opacity: {
+                              duration: 0.1,
+                              delay: 1.9 + index * 0.12,
+                            },
+                          }
+                    }
                   />
                 </svg>
 
-                {/* Card content fades in after border draws */}
+                {/* Card content */}
                 <motion.div
                   className="relative bg-surface-1 p-8 rounded-xl card-elevated noise"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: 2.2 + index * 0.12,
-                    ease,
-                  }}
+                  transition={t(skipped, 2.2 + index * 0.12, 0.4)}
                 >
-                  {/* Accent dot + name */}
                   <div className="mb-4 flex items-center gap-3">
                     <motion.span
                       className="h-2.5 w-2.5 rounded-full shrink-0"
-                      style={{
-                        backgroundColor: pb.accentColor,
-                      }}
+                      style={{ backgroundColor: pb.accentColor }}
                       initial={{ scale: 0 }}
                       animate={{
                         scale: 1,
                         boxShadow: `0 0 8px ${pb.accentColor}30`,
                       }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 2.4 + index * 0.12,
-                        ease,
-                      }}
+                      transition={t(skipped, 2.4 + index * 0.12, 0.3)}
                     />
                     <h2 className="font-serif text-xl font-semibold tracking-tight">
                       {pb.shortName}
                     </h2>
                   </div>
 
-                  {/* Description */}
                   <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
                     {pb.description}
                   </p>
 
-                  {/* Stats row */}
                   <div className="mb-6 flex gap-6 text-xs text-muted-foreground">
                     <span>
                       <span className="font-medium text-foreground">
@@ -232,13 +282,11 @@ export function LandingClient({
                     </span>
                   </div>
 
-                  {/* Arrow */}
                   <div className="flex items-center gap-1.5 text-sm font-medium text-primary">
                     <span>Explore</span>
                     <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                   </div>
 
-                  {/* Bottom gradient accent bar */}
                   <motion.div
                     className="absolute inset-x-0 bottom-0 h-[2px]"
                     style={{
@@ -246,11 +294,7 @@ export function LandingClient({
                     }}
                     initial={{ opacity: 0, scaleX: 0 }}
                     animate={{ opacity: 0.6, scaleX: 1 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 2.5 + index * 0.12,
-                      ease,
-                    }}
+                    transition={t(skipped, 2.5 + index * 0.12, 0.5)}
                   />
                 </motion.div>
               </Link>
@@ -264,7 +308,7 @@ export function LandingClient({
         className="border-t border-border px-8 py-6 text-center text-xs text-muted-foreground"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 3.2, ease }}
+        transition={t(skipped, 3.2, 0.5)}
       >
         Built with research. Designed with care.
       </motion.footer>
