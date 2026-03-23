@@ -61,7 +61,7 @@ export function Sidebar({ sections, colorsLight, hasResearch }: SidebarProps) {
             href="/"
             className="group flex items-center gap-2 rounded-md px-2 py-1.5 text-xs text-muted-foreground/50 transition-all duration-200 hover:bg-surface-2/60 hover:text-muted-foreground"
           >
-            <ArrowLeft className="h-3 w-3 transition-transform duration-200 group-hover:-translate-x-0.5" />
+            <ArrowLeft className="h-3 w-3 transition-transform duration-300 ease-out group-hover:-translate-x-0.5" />
             <span>All Playbooks</span>
           </Link>
           <div className="flex items-center justify-between px-2">

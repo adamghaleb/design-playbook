@@ -215,7 +215,7 @@ export default async function PracticePage({
               href={`/${playbook}/practice/${prev.id}`}
               className="group flex items-center gap-2 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
             >
-              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+              <ArrowLeft className="h-4 w-4 transition-transform duration-300 ease-out group-hover:-translate-x-1" />
               <div>
                 <div className="text-[10px] uppercase tracking-wider">
                   Previous
@@ -235,7 +235,7 @@ export default async function PracticePage({
                 <div className="text-[10px] uppercase tracking-wider">Next</div>
                 <div className="font-medium text-foreground">{next.title}</div>
               </div>
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
             </Link>
           ) : (
             <div />

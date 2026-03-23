@@ -62,9 +62,9 @@ function PlaybookCard({ pb }: { pb: PlaybookWithStats }) {
           </span>
         </div>
 
-        <div className="flex items-center gap-1.5 text-sm font-medium text-primary">
+        <div className="flex items-center gap-1.5 text-sm font-medium text-primary transition-transform duration-300 ease-out group-hover:translate-x-0.5">
           <span>Explore</span>
-          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-1" />
         </div>
 
         {/* Bottom gradient accent bar */}

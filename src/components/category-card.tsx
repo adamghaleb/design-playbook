@@ -69,7 +69,7 @@ export function CategoryCard({
           <span className="text-sm text-muted-foreground">
             {!featured && `${category.count} practices`}
           </span>
-          <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5" />
+          <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform duration-300 ease-out group-hover:translate-x-1" />
         </div>
 
         {/* Bottom gradient accent bar */}
