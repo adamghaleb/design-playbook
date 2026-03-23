@@ -60,25 +60,22 @@
   scrollbar-color: var(--color-border) transparent;
 }
 
-/* Smooth theme transitions on all color properties */
-html[data-theme] *,
-html[data-theme] *::before,
-html[data-theme] *::after {
+/* Smooth theme transitions — applied temporarily during toggle via .theme-transitioning */
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease,
     color 0.3s ease,
     fill 0.3s ease,
     stroke 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease !important;
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
   font-family:
     var(--font-garamond), "Apple Garamond", "Garamond", "Georgia", serif;
   font-size: 16px;

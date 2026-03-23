@@ -37,12 +37,18 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggleTheme = useCallback(() => {
+    // Add transitioning class so theme colors animate smoothly
+    document.documentElement.classList.add("theme-transitioning");
     setTheme((prev) => {
       const next = prev === "light" ? "dark" : "light";
       localStorage.setItem("dp-theme", next);
       document.documentElement.setAttribute("data-theme", next);
       return next;
     });
+    // Remove after transitions complete so it doesn't interfere with other animations
+    setTimeout(() => {
+      document.documentElement.classList.remove("theme-transitioning");
+    }, 350);
   }, []);
 
   return (
