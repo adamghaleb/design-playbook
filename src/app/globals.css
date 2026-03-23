@@ -3,7 +3,7 @@
 /* ═══════════════════════════════════════════════
    LIGHT MODE (default) — Warm Cream / Atelier Editorial
    ═══════════════════════════════════════════════ */
-@theme inline {
+@theme {
   --color-background: #faf8f4;
   --color-foreground: #57524c;
   --color-muted: #f5f0e8;
@@ -21,6 +21,9 @@
   --color-primary: #7c6f5e;
   --color-primary-dim: #635749;
   --color-primary-glow: rgba(124, 111, 94, 0.08);
+}
+
+@theme inline {
   --font-sans: var(--font-garamond);
   --font-serif: var(--font-bethany);
   --font-mono: var(--font-jetbrains);
