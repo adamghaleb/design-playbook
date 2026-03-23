@@ -22,9 +22,7 @@ const ease = [0.25, 0.1, 0.25, 1] as const;
 const strokePath =
   "M0,8 C20,4 40,12 60,6 C80,0 100,10 120,8 C140,6 160,14 180,8 C200,2 220,12 240,8 C260,4 280,10 300,8";
 
-// When skipped, everything resolves instantly
-function t(skipped: boolean, delay: number, duration: number) {
-  if (skipped) return { duration: 0.15, delay: 0, ease };
+function d(delay: number, duration: number) {
   return { duration, delay, ease };
 }
 
@@ -40,11 +38,9 @@ export function LandingClient({
     if (!skipped) setSkipped(true);
   }, [skipped]);
 
-  // Listen for spacebar
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.code === "Space" && !e.repeat) {
-        // Don't prevent default if user is focused on a link/button
         const tag = (e.target as HTMLElement)?.tagName;
         if (tag === "INPUT" || tag === "TEXTAREA") return;
         e.preventDefault();
@@ -55,7 +51,6 @@ export function LandingClient({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [skip]);
 
-  // Show skip hint after a beat, hide when skipped
   useEffect(() => {
     if (skipped) {
       skipHintControls.start({ opacity: 0, transition: { duration: 0.2 } });
@@ -67,7 +62,6 @@ export function LandingClient({
     return () => clearTimeout(timer);
   }, [skipped, skipHintControls]);
 
-  // Also hide hint after animation would naturally finish
   useEffect(() => {
     if (skipped) return;
     const timer = setTimeout(() => {
@@ -77,7 +71,30 @@ export function LandingClient({
   }, [skipped, skipHintControls]);
 
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div
+      className={`min-h-screen flex flex-col relative${skipped ? " landing-skipped" : ""}`}
+    >
+      {/* CSS override that forces all animations to end state when skipped */}
+      {skipped && (
+        <style>{`
+          .landing-skipped * {
+            opacity: 1 !important;
+            transform: none !important;
+          }
+          .landing-skipped svg path,
+          .landing-skipped svg rect {
+            stroke-dashoffset: 0 !important;
+          }
+          .landing-skipped .accent-bar {
+            opacity: 0.6 !important;
+            transform: scaleX(1) !important;
+          }
+          .landing-skipped .ink-stroke path {
+            opacity: 0.5 !important;
+          }
+        `}</style>
+      )}
+
       {/* Theme toggle - top right */}
       <div className="fixed top-5 right-5 z-50">
         <ThemeToggle />
@@ -104,14 +121,14 @@ export function LandingClient({
             className="mb-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={t(skipped, 0, 0.3)}
+            transition={d(0, 0.3)}
           >
-            {/* "The Ultimate" — ink write-on effect */}
+            {/* "The Ultimate" — ink write-on */}
             <motion.span
               className="block font-bethany text-5xl sm:text-7xl tracking-tight text-foreground/90"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={t(skipped, 0.2, 0.6)}
+              transition={d(0.2, 0.6)}
             >
               {"The Ultimate".split("").map((char, i) => (
                 <motion.span
@@ -119,7 +136,7 @@ export function LandingClient({
                   className="inline-block"
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={t(skipped, 0.3 + i * 0.04, 0.08)}
+                  transition={d(0.3 + i * 0.04, 0.08)}
                 >
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
@@ -131,7 +148,7 @@ export function LandingClient({
               className="block font-serif text-4xl sm:text-6xl font-semibold tracking-tight mt-1"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={t(skipped, 0.9, 0.5)}
+              transition={d(0.9, 0.5)}
             >
               {"Playbook".split("").map((char, i) => (
                 <motion.span
@@ -139,7 +156,7 @@ export function LandingClient({
                   className="inline-block"
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={t(skipped, 0.95 + i * 0.04, 0.08)}
+                  transition={d(0.95 + i * 0.04, 0.08)}
                 >
                   {char}
                 </motion.span>
@@ -148,10 +165,10 @@ export function LandingClient({
 
             {/* Ink stroke underline */}
             <motion.div
-              className="flex justify-center mt-3"
+              className="flex justify-center mt-3 ink-stroke"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={t(skipped, 1.3, 0.2)}
+              transition={d(1.3, 0.2)}
             >
               <svg
                 width="200"
@@ -168,14 +185,10 @@ export function LandingClient({
                   fill="none"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 0.5 }}
-                  transition={
-                    skipped
-                      ? { duration: 0.15, delay: 0 }
-                      : {
-                          pathLength: { duration: 0.8, delay: 1.3, ease },
-                          opacity: { duration: 0.2, delay: 1.3 },
-                        }
-                  }
+                  transition={{
+                    pathLength: { duration: 0.8, delay: 1.3, ease },
+                    opacity: { duration: 0.2, delay: 1.3 },
+                  }}
                 />
               </svg>
             </motion.div>
@@ -186,7 +199,7 @@ export function LandingClient({
             className="text-lg sm:text-xl text-muted-foreground max-w-lg mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={t(skipped, 1.6, 0.5)}
+            transition={d(1.6, 0.5)}
           >
             Research-backed playbooks for building better everything.
           </motion.p>
@@ -199,11 +212,12 @@ export function LandingClient({
               key={pb.slug}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={t(skipped, 1.8 + index * 0.12, 0.15)}
+              transition={d(1.8 + index * 0.12, 0.15)}
+              whileHover={{ y: -3 }}
             >
               <Link
                 href={`/${pb.slug}`}
-                className="group relative block rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.01]"
+                className="group relative block rounded-xl overflow-hidden"
               >
                 {/* SVG border draw-on */}
                 <svg
@@ -222,30 +236,26 @@ export function LandingClient({
                     strokeWidth="1"
                     initial={{ pathLength: 0, opacity: 0 }}
                     animate={{ pathLength: 1, opacity: 1 }}
-                    transition={
-                      skipped
-                        ? { duration: 0.15, delay: 0 }
-                        : {
-                            pathLength: {
-                              duration: 0.6,
-                              delay: 1.9 + index * 0.12,
-                              ease,
-                            },
-                            opacity: {
-                              duration: 0.1,
-                              delay: 1.9 + index * 0.12,
-                            },
-                          }
-                    }
+                    transition={{
+                      pathLength: {
+                        duration: 0.6,
+                        delay: 1.9 + index * 0.12,
+                        ease,
+                      },
+                      opacity: {
+                        duration: 0.1,
+                        delay: 1.9 + index * 0.12,
+                      },
+                    }}
                   />
                 </svg>
 
                 {/* Card content */}
                 <motion.div
-                  className="relative bg-surface-1 p-8 rounded-xl card-elevated noise"
+                  className="relative bg-surface-1 p-8 rounded-xl card-elevated noise transition-colors duration-200 group-hover:bg-surface-2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={t(skipped, 2.2 + index * 0.12, 0.4)}
+                  transition={d(2.2 + index * 0.12, 0.4)}
                 >
                   <div className="mb-4 flex items-center gap-3">
                     <motion.span
@@ -256,7 +266,7 @@ export function LandingClient({
                         scale: 1,
                         boxShadow: `0 0 8px ${pb.accentColor}30`,
                       }}
-                      transition={t(skipped, 2.4 + index * 0.12, 0.3)}
+                      transition={d(2.4 + index * 0.12, 0.3)}
                     />
                     <h2 className="font-serif text-xl font-semibold tracking-tight">
                       {pb.shortName}
@@ -284,17 +294,18 @@ export function LandingClient({
 
                   <div className="flex items-center gap-1.5 text-sm font-medium text-primary">
                     <span>Explore</span>
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                   </div>
 
+                  {/* Bottom gradient accent bar */}
                   <motion.div
-                    className="absolute inset-x-0 bottom-0 h-[2px]"
+                    className="accent-bar absolute inset-x-0 bottom-0 h-[2px]"
                     style={{
                       background: `linear-gradient(to right, transparent, ${pb.accentColor}, transparent)`,
                     }}
                     initial={{ opacity: 0, scaleX: 0 }}
                     animate={{ opacity: 0.6, scaleX: 1 }}
-                    transition={t(skipped, 2.5 + index * 0.12, 0.5)}
+                    transition={d(2.5 + index * 0.12, 0.5)}
                   />
                 </motion.div>
               </Link>
@@ -308,7 +319,7 @@ export function LandingClient({
         className="border-t border-border px-8 py-6 text-center text-xs text-muted-foreground"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={t(skipped, 3.2, 0.5)}
+        transition={d(3.2, 0.5)}
       >
         Built with research. Designed with care.
       </motion.footer>
