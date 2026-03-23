@@ -79,13 +79,7 @@ function PlaybookCard({ pb }: { pb: PlaybookWithStats }) {
   );
 }
 
-function AnimatedLanding({
-  playbooks,
-  onSkip,
-}: {
-  playbooks: PlaybookWithStats[];
-  onSkip: () => void;
-}) {
+function AnimatedLanding({ playbooks }: { playbooks: PlaybookWithStats[] }) {
   const [hintVisible, setHintVisible] = useState(false);
 
   useEffect(() => {
@@ -96,19 +90,6 @@ function AnimatedLanding({
       clearTimeout(hide);
     };
   }, []);
-
-  useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.code === "Space" && !e.repeat) {
-        const tag = (e.target as HTMLElement)?.tagName;
-        if (tag === "INPUT" || tag === "TEXTAREA") return;
-        e.preventDefault();
-        onSkip();
-      }
-    }
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onSkip]);
 
   return (
     <>
@@ -141,10 +122,9 @@ function AnimatedLanding({
               {"The Ultimate".split("").map((char, i) => (
                 <motion.span
                   key={i}
-                  className="inline-block"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.08, delay: 0.3 + i * 0.04, ease }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.06, delay: 0.3 + i * 0.04, ease }}
                 >
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
@@ -156,10 +136,9 @@ function AnimatedLanding({
               {"Playbook".split("").map((char, i) => (
                 <motion.span
                   key={i}
-                  className="inline-block"
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.08, delay: 0.95 + i * 0.04, ease }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.06, delay: 0.95 + i * 0.04, ease }}
                 >
                   {char}
                 </motion.span>
@@ -289,6 +268,32 @@ export function LandingClient({
   const [skipped, setSkipped] = useState(false);
   const skip = useCallback(() => setSkipped(true), []);
 
+  // Spacebar handler lives here so it persists after skip
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.code === "Space") {
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        e.preventDefault();
+        if (!e.repeat) skip();
+      }
+    }
+    // Prevent scroll on both keydown and keyup
+    function handleKeyUp(e: KeyboardEvent) {
+      if (e.code === "Space") {
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        e.preventDefault();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [skip]);
+
   return (
     <div className="min-h-screen flex flex-col relative">
       <div className="fixed top-5 right-5 z-50">
@@ -297,7 +302,7 @@ export function LandingClient({
       {skipped ? (
         <StaticLanding playbooks={playbooks} />
       ) : (
-        <AnimatedLanding playbooks={playbooks} onSkip={skip} />
+        <AnimatedLanding playbooks={playbooks} />
       )}
     </div>
   );
