@@ -69,6 +69,16 @@ const playbooks: PlaybookConfig[] = [
     icon: "Type",
     hasResearch: false,
   },
+  {
+    slug: "creative-resistance",
+    name: "Creative Resistance Playbook",
+    shortName: "Creative Resistance",
+    description:
+      "525 strategies for beating Resistance, shipping creative work, and turning pro. Based on Pressfield and behavioral science.",
+    accentColor: "#f59e0b",
+    icon: "Flame",
+    hasResearch: false,
+  },
 ];
 
 const playbookBySlug = new Map<string, PlaybookConfig>();

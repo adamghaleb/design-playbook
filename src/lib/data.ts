@@ -37,6 +37,11 @@ import micrographicsCategories from "../../data/micrographics/categories.json";
 import micrographicsTags from "../../data/micrographics/tags.json";
 import micrographicsMeta from "../../data/micrographics/meta.json";
 
+import creativeResistancePractices from "../../data/creative-resistance/practices.json";
+import creativeResistanceCategories from "../../data/creative-resistance/categories.json";
+import creativeResistanceTags from "../../data/creative-resistance/tags.json";
+import creativeResistanceMeta from "../../data/creative-resistance/meta.json";
+
 // Registry of all playbook data (add new playbooks here)
 const PLAYBOOK_DATA: Record<
   string,
@@ -89,6 +94,13 @@ const PLAYBOOK_DATA: Record<
     tags: micrographicsTags as string[],
     articles: [],
     meta: micrographicsMeta as PlaybookMeta,
+  },
+  "creative-resistance": {
+    practices: creativeResistancePractices as Practice[],
+    categories: creativeResistanceCategories as Category[],
+    tags: creativeResistanceTags as string[],
+    articles: [],
+    meta: creativeResistanceMeta as PlaybookMeta,
   },
 };
 

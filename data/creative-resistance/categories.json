@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Accountability & Social Architecture",
+    "slug": "accountability-social-architecture",
+    "count": 20,
+    "section": "Social & External",
+    "color": "#C4906A"
+  },
+  {
+    "name": "ADHD & Dopamine-Deficit Resistance",
+    "slug": "adhd-dopamine-deficit-resistance",
+    "count": 25,
+    "section": "Neuroscience & Psychology",
+    "color": "#BF7A7A"
+  },
+  {
+    "name": "Amateur vs Professional Mindset",
+    "slug": "amateur-vs-professional-mindset",
+    "count": 25,
+    "section": "Identity & Mindset",
+    "color": "#B87A9E"
+  },
+  {
+    "name": "Anatomy of Resistance",
+    "slug": "anatomy-of-resistance",
+    "count": 25,
+    "section": "Understanding Resistance",
+    "color": "#A882B8"
+  },
+  {
+    "name": "Creative Vocation & Calling",
+    "slug": "creative-vocation-calling",
+    "count": 20,
+    "section": "Identity & Mindset",
+    "color": "#9A85B5"
+  },
+  {
+    "name": "Daily Practice & Showing Up",
+    "slug": "daily-practice-showing-up",
+    "count": 25,
+    "section": "Habits & Systems",
+    "color": "#8E84B8"
+  },
+  {
+    "name": "Ego, Identity & Creative Avoidance",
+    "slug": "ego-identity-creative-avoidance",
+    "count": 20,
+    "section": "Identity & Mindset",
+    "color": "#8185B5"
+  },
+  {
+    "name": "Environmental Design",
+    "slug": "environmental-design",
+    "count": 20,
+    "section": "Habits & Systems",
+    "color": "#7A94B8"
+  },
+  {
+    "name": "Fear Architecture",
+    "slug": "fear-architecture",
+    "count": 25,
+    "section": "Neuroscience & Psychology",
+    "color": "#6FA0B5"
+  },
+  {
+    "name": "Flow State Engineering",
+    "slug": "flow-state-engineering",
+    "count": 20,
+    "section": "Neuroscience & Psychology",
+    "color": "#6DA5AB"
+  },
+  {
+    "name": "Gamification & Reward Design",
+    "slug": "gamification-reward-design",
+    "count": 20,
+    "section": "Habits & Systems",
+    "color": "#72A89E"
+  },
+  {
+    "name": "Mastery & Technique Commitment",
+    "slug": "mastery-technique-commitment",
+    "count": 20,
+    "section": "Identity & Mindset",
+    "color": "#6FA898"
+  },
+  {
+    "name": "Perfectionism & Inner Critic",
+    "slug": "perfectionism-inner-critic",
+    "count": 20,
+    "section": "Understanding Resistance",
+    "color": "#7AAB8A"
+  },
+  {
+    "name": "Procrastination Neuroscience",
+    "slug": "procrastination-neuroscience",
+    "count": 25,
+    "section": "Neuroscience & Psychology",
+    "color": "#8EA87A"
+  },
+  {
+    "name": "Professional Habits & Rituals",
+    "slug": "professional-habits-rituals",
+    "count": 25,
+    "section": "Habits & Systems",
+    "color": "#B5A46A"
+  },
+  {
+    "name": "Resilience & Recovery from Failure",
+    "slug": "resilience-recovery-from-failure",
+    "count": 20,
+    "section": "Shipping & Resilience",
+    "color": "#BFA06E"
+  },
+  {
+    "name": "Resistance Disguises & Symptoms",
+    "slug": "resistance-disguises-symptoms",
+    "count": 25,
+    "section": "Understanding Resistance",
+    "color": "#C4906A"
+  },
+  {
+    "name": "Resistance & Self-Sabotage Patterns",
+    "slug": "resistance-self-sabotage-patterns",
+    "count": 20,
+    "section": "Understanding Resistance",
+    "color": "#C49A78"
+  },
+  {
+    "name": "Self-Validation & Detachment from Outcomes",
+    "slug": "self-validation-detachment-from-outcomes",
+    "count": 20,
+    "section": "Shipping & Resilience",
+    "color": "#C4AA72"
+  },
+  {
+    "name": "Shadow Lives & Shadow Careers",
+    "slug": "shadow-lives-shadow-careers",
+    "count": 20,
+    "section": "Understanding Resistance",
+    "color": "#95A872"
+  },
+  {
+    "name": "Shipping & Finishing",
+    "slug": "shipping-finishing",
+    "count": 20,
+    "section": "Shipping & Resilience",
+    "color": "#72AB9E"
+  },
+  {
+    "name": "Start Mechanics & Activation Energy",
+    "slug": "start-mechanics-activation-energy",
+    "count": 25,
+    "section": "Habits & Systems",
+    "color": "#9E8ABF"
+  },
+  {
+    "name": "Territory vs Hierarchy",
+    "slug": "territory-vs-hierarchy",
+    "count": 20,
+    "section": "Identity & Mindset",
+    "color": "#8A9EC4"
+  },
+  {
+    "name": "The Muse & Creative Source",
+    "slug": "the-muse-creative-source",
+    "count": 20,
+    "section": "Shipping & Resilience",
+    "color": "#7AA5C4"
+  }
+]
